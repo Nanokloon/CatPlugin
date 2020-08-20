@@ -1,4 +1,4 @@
-package org.zapper.ro;
+package org.roundworld.ro;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

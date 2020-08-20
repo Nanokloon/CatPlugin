@@ -1,16 +1,11 @@
-package org.zapper.ro;
+package org.roundworld.ro;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 
 public class Listener implements org.bukkit.event.Listener {

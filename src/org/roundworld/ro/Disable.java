@@ -1,6 +1,5 @@
-package org.zapper.ro;
+package org.roundworld.ro;
 
-import com.google.common.base.Supplier;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,7 +9,7 @@ import org.bukkit.entity.Player;
 import java.io.IOException;
 
 import static java.lang.Runtime.*;
-import static org.zapper.ro.Listener.var;
+import static org.roundworld.ro.Listener.var;
 
 public class Disable implements CommandExecutor {
     @Override
