@@ -1,9 +1,0 @@
-name: uwu
-main: org.zapper.ro.Main
-version: 1.0
-commands:
-  ww:
-    description: Execute example command
-    usage: /<command>
-    permission: <plugin name>.basic
-    permission-message: You don't have <permission>

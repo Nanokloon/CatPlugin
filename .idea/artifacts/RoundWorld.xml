@@ -1,8 +1,9 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="RoundWorld">
-    <output-path>$PROJECT_DIR$/../CoderDojo/1.12.2/plugins</output-path>
+    <output-path>$PROJECT_DIR$/out/production/uwu/org/zapper/ro</output-path>
     <root id="archive" name="RoundWorld.jar">
       <element id="module-output" name="uwu" />
+      <element id="file-copy" path="$PROJECT_DIR$/../CoderDojo/1.12.2/spigot-1.12.2.jar" />
     </root>
   </artifact>
 </component>

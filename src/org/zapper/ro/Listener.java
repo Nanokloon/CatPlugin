@@ -1,4 +1,4 @@
-package org.roundworld.ro;
+package org.zapper.ro;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
