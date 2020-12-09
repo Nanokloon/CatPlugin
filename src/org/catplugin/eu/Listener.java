@@ -1,4 +1,4 @@
-package org.zapper.ro;
+package org.catplugin.eu;
 
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
@@ -11,7 +11,6 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
