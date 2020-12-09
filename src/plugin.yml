@@ -1,9 +1,15 @@
-name: uwu
+name: CatPlugin
 main: org.zapper.ro.Main
 version: 1.0
+api-version: 1.16
 commands:
-  ww:
-    description: Execute example command
+  givecustomitem:
+    description: can give cannon , chickensword
     usage: /<command>
     permission: <plugin name>.basic
-    permission-message: You don't have <permission>
+    permission-message:
+
+  craftguide:
+
+      description: can give cannon , chickensword
+      usage: /<command>
