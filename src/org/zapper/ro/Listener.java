@@ -32,7 +32,6 @@ public class Listener implements org.bukkit.event.Listener {
                     PersistentDataContainer container = itemMeta.getPersistentDataContainer();
                     if (container.has(itemKey, PersistentDataType.INTEGER)) {
                         if (container.get(itemKey, PersistentDataType.INTEGER) == 1) {
-                            //w.spawnEntity(l,EntityType.FIREBALL);
                             p.launchProjectile(Fireball.class);
                             Damageable damage = (Damageable) sword.getItemMeta();
                             damage.setDamage(damage.getDamage() + 1);
