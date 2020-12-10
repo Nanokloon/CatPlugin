@@ -77,33 +77,40 @@ public class Listener implements org.bukkit.event.Listener {
         }
     }
     @EventHandler
-    public void InventoryClickEvent(InventoryClickEvent e){
+    public void InventoryClickEvent(InventoryClickEvent e) {
         InventoryView i = e.getView();
-        if(i.getTitle().equals("CraftGuide")){
+        if (i.getTitle().equals("CraftGuide")) {
             e.setCancelled(true);
-            if(e.getCurrentItem().getItemMeta().getDisplayName().equals("Next")){
+            if (e.getCurrentItem().getItemMeta().getDisplayName().equals("Next")) {
                 e.getWhoClicked().openInventory(Main.cannonGuide);
-            }
-            else if(e.getCurrentItem().getItemMeta().getDisplayName().equals("Back")){
+            } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals("Back")) {
                 e.getWhoClicked().openInventory(Main.craftGuide);
             }
         }
-        if(e.getClickedInventory().getType().equals(InventoryType.ANVIL)) {
-            if(e.getInventory().getItem(2).hasItemMeta() ){
-            ItemMeta oof = e.getInventory().getItem(2).getItemMeta();
-            if (oof.getPersistentDataContainer() != null) {
-                PersistentDataContainer p = oof.getPersistentDataContainer();
-                NamespacedKey itemKey = new NamespacedKey(NamespacedKey.BUKKIT, "ballz");
-                if (p.has(itemKey, PersistentDataType.INTEGER)) {
-                    if (p.get(itemKey, PersistentDataType.INTEGER).equals(1)) {
-                        e.setCancelled(true);
-                        e.getWhoClicked().closeInventory();
-                        e.getWhoClicked().sendMessage(ChatColor.RED + "You cant fix the cannon ...");
+        //e.getWhoClicked().sendMessage(e.getInventory().getType().toString());
+        if (e.getCurrentItem() == null) {
+            return;
+
+        } else {
+            if (e.getClickedInventory().getType().equals(InventoryType.ANVIL)) {
+                if (e.getInventory().getItem(2) != null) {
+                    if (e.getInventory().getItem(2).hasItemMeta()) {
+                        ItemMeta oof = e.getInventory().getItem(2).getItemMeta();
+                        if (oof.getPersistentDataContainer() != null) {
+                            PersistentDataContainer p = oof.getPersistentDataContainer();
+                            NamespacedKey itemKey = new NamespacedKey(NamespacedKey.BUKKIT, "ballz");
+                            if (p.has(itemKey, PersistentDataType.INTEGER)) {
+                                if (p.get(itemKey, PersistentDataType.INTEGER).equals(1)) {
+                                    e.setCancelled(true);
+                                    e.getWhoClicked().closeInventory();
+                                    e.getWhoClicked().sendMessage(ChatColor.RED + "You cant fix the cannon ...");
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-    }
     }
    /* @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent e){
