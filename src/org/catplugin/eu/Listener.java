@@ -89,6 +89,7 @@ public class Listener implements org.bukkit.event.Listener {
             }
         }
         if(e.getClickedInventory().getType().equals(InventoryType.ANVIL)) {
+            if(e.getInventory().getItem(2).hasItemMeta() ){
             ItemMeta oof = e.getInventory().getItem(2).getItemMeta();
             if (oof.getPersistentDataContainer() != null) {
                 PersistentDataContainer p = oof.getPersistentDataContainer();
@@ -102,6 +103,7 @@ public class Listener implements org.bukkit.event.Listener {
                 }
             }
         }
+    }
     }
    /* @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent e){
