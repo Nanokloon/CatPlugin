@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TabComplete implements TabCompleter {
 
-    private static final String[] COMMANDS = {"chickensword","cannon"};
+    private static final String[] COMMANDS = {"chickensword","cannon","netherapple","banhammer"};
 
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] args) {

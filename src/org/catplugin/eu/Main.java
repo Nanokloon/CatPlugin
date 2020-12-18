@@ -16,8 +16,11 @@ public class Main extends JavaPlugin {
 
     public static ItemStack chickenSword=new ItemStack(Material.NETHERITE_SWORD,1);
     public static ItemStack ballSword=new ItemStack(Material.NETHERITE_HOE,1);
+    public static ItemStack netheriteApple = new ItemStack(Material.APPLE,1);
+    public static ItemStack banHammer = new ItemStack(Material.NETHERITE_AXE,1);
     public static Inventory craftGuide;
     public static Inventory cannonGuide;
+
     @Override
     public void onEnable(){
         getLogger().info("uw Moeder");
@@ -59,6 +62,18 @@ public class Main extends JavaPlugin {
         Bukkit.addRecipe(ballrecipe);
         Bukkit.addRecipe(recipe);
 
+        ItemMeta chickenMeta = netheriteApple.getItemMeta();
+        NamespacedKey chickenKey = new NamespacedKey(NamespacedKey.BUKKIT,"netheriteapple");
+        chickenMeta.setDisplayName(ChatColor.DARK_RED+"Netherite Apple");
+        chickenMeta.getPersistentDataContainer().set(chickenKey,PersistentDataType.INTEGER,1);
+        netheriteApple.setItemMeta(chickenMeta);
+
+        ItemMeta banMeta = banHammer.getItemMeta();
+        NamespacedKey banKey = new NamespacedKey(NamespacedKey.BUKKIT,"banhammer");
+        banMeta.setDisplayName(ChatColor.DARK_RED+"The Ban Hammer");
+        banMeta.getPersistentDataContainer().set(banKey,PersistentDataType.INTEGER,1);
+        banHammer.setItemMeta(banMeta);
+
         ItemStack menuGlass = new ItemStack(Material.BLACK_STAINED_GLASS_PANE,1);
         ItemMeta menumeta = menuGlass.getItemMeta();
         menumeta.setDisplayName(" ");
@@ -75,7 +90,7 @@ public class Main extends JavaPlugin {
         nextArrow.setItemMeta(nextMeta);
 
         craftGuide =  Bukkit.createInventory(null , 45 , "CraftGuide");
-        cannonGuide =  Bukkit.createInventory(null , 45 , "CraftGuide");
+
 
         for(int i = 0;i <45 ;i++){
             craftGuide.setItem(i,menuGlass);
@@ -93,12 +108,10 @@ public class Main extends JavaPlugin {
 
         craftGuide.setItem(44,nextArrow);
 
+        cannonGuide =  Bukkit.createInventory(null , 45 , "CraftGuide");
 
-        for(int i = 0;i <45 ;i++){
-            if(i==28||i==30){}
-            else {
-                cannonGuide.setItem(i, menuGlass);
-            }
+        for(int j = 0;j <45 ;j++){
+            cannonGuide.setItem(j, menuGlass);
         }
         cannonGuide.setItem(10,new ItemStack(Material.FIRE_CHARGE,1));
         cannonGuide.setItem(11,new ItemStack(Material.NETHERITE_BLOCK,1));
@@ -107,9 +120,9 @@ public class Main extends JavaPlugin {
         cannonGuide.setItem(20,new ItemStack(Material.NETHERITE_BLOCK,1));
         cannonGuide.setItem(21,new ItemStack(Material.BLAZE_POWDER,1));
         cannonGuide.setItem(25,ballSword);
-        cannonGuide.setItem(28,new ItemStack(Material.AIR,1));
+        cannonGuide.setItem(28,new ItemStack(Material.NETHER_BRICK,0));
         cannonGuide.setItem(29,new ItemStack(Material.BLAZE_ROD,1));
-        cannonGuide.setItem(30,new ItemStack(Material.AIR,1));
+        cannonGuide.setItem(30,new ItemStack(Material.NETHERITE_AXE,0));
 
         cannonGuide.setItem(36,backArrow);
 

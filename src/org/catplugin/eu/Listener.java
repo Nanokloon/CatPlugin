@@ -11,12 +11,15 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 
 public class Listener implements org.bukkit.event.Listener {
@@ -54,6 +57,7 @@ public class Listener implements org.bukkit.event.Listener {
                 if (p.getInventory().getItemInMainHand().getType().equals(Material.NETHERITE_SWORD)) {
                     ItemStack sword = p.getInventory().getItemInMainHand();
                     NamespacedKey itemKey = new NamespacedKey(NamespacedKey.BUKKIT, "onlychickens");
+                    NamespacedKey banKey = new NamespacedKey(NamespacedKey.BUKKIT, "banhammer");
                     if (sword.hasItemMeta()) {
                         ItemMeta itemMeta = sword.getItemMeta();
                         if (itemMeta.getPersistentDataContainer() != null) {
@@ -69,10 +73,23 @@ public class Listener implements org.bukkit.event.Listener {
                                     }
                                 }
                             }
+                            if (container.has(banKey, PersistentDataType.INTEGER)) {
+                                int foundvalue = container.get(itemKey, PersistentDataType.INTEGER);
+
+                                if(foundvalue == 1) {
+                                    if (e.getEntity() instanceof Player) {
+                                        Player hit = (Player) e.getEntity();
+                                        Bukkit.broadcastMessage(hit.getName());
+                                        BanList banlist = Bukkit.getBanList(BanList.Type.NAME);
+                                        banlist.addBan(hit.getName(), "banhammer", null , null);
+                                        hit.kickPlayer("kicked by hammer");
+                                    }
+                                }
+                            }
                         }
                     }
-                }
 
+                }
             }
         }
     }
@@ -81,12 +98,16 @@ public class Listener implements org.bukkit.event.Listener {
         InventoryView i = e.getView();
         if (i.getTitle().equals("CraftGuide")) {
             e.setCancelled(true);
-            if (e.getCurrentItem().getItemMeta().getDisplayName().equals("Next")) {
-                e.getWhoClicked().openInventory(Main.cannonGuide);
-            } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals("Back")) {
-                e.getWhoClicked().openInventory(Main.craftGuide);
-            }
+            if (e.getCurrentItem() != null){
+                if (e.getCurrentItem().hasItemMeta())
+                    if (e.getCurrentItem().getItemMeta().getDisplayName().equals("Next")) {
+                        e.getWhoClicked().openInventory(Main.cannonGuide);
+                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals("Back")) {
+                        e.getWhoClicked().openInventory(Main.craftGuide);
+                    }
         }
+    }
+
         //e.getWhoClicked().sendMessage(e.getInventory().getType().toString());
         if (e.getCurrentItem() == null) {
             return;
@@ -110,6 +131,33 @@ public class Listener implements org.bukkit.event.Listener {
                     }
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void PlayerEatEvent(PlayerItemConsumeEvent e){
+        Player p = e.getPlayer();
+        ItemStack eatenItem =  e.getItem();
+        if ( eatenItem.equals(Main.netheriteApple)){
+            PotionEffect pot1 = new PotionEffect(PotionEffectType.ABSORPTION,10000,10);
+            PotionEffect pot2 = new PotionEffect(PotionEffectType.REGENERATION,10000,5);
+            PotionEffect pot3 = new PotionEffect(PotionEffectType.SATURATION,1000,3);
+            PotionEffect pot4 = new PotionEffect(PotionEffectType.FIRE_RESISTANCE,10000,1);
+            PotionEffect pot5 = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,10000,3);
+            PotionEffect pot6 = new PotionEffect(PotionEffectType.SLOW,10000,2);
+
+            p.addPotionEffect(pot1);
+            p.addPotionEffect(pot2);
+            p.addPotionEffect(pot3);
+            p.addPotionEffect(pot4);
+            p.addPotionEffect(pot5);
+
+            for (PotionEffect effect : p.getActivePotionEffects()) {
+                if(effect.getType().equals(PotionEffectType.POISON) || effect.getType().equals(PotionEffectType.WITHER) || effect.getType().equals(PotionEffectType.SLOW)){
+                    p.removePotionEffect(effect.getType());
+                }
+            }
+            p.addPotionEffect(pot6);
         }
     }
    /* @EventHandler
