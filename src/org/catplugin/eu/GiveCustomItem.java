@@ -24,10 +24,7 @@ public class GiveCustomItem implements CommandExecutor {
             p.getInventory().addItem(Main.netheriteApple);
             p.sendMessage(ChatColor.RED+"Gave Netherite Apple");
         }
-        else if(what.equals("banhammer")){
-            p.getInventory().addItem(Main.banHammer);
-            p.sendMessage(ChatColor.RED+"Gave Ban Hammer");
-        }
+
 
         return true;
     }

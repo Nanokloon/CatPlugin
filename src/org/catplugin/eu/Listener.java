@@ -73,19 +73,6 @@ public class Listener implements org.bukkit.event.Listener {
                                     }
                                 }
                             }
-                            if (container.has(banKey, PersistentDataType.INTEGER)) {
-                                int foundvalue = container.get(itemKey, PersistentDataType.INTEGER);
-
-                                if(foundvalue == 1) {
-                                    if (e.getEntity() instanceof Player) {
-                                        Player hit = (Player) e.getEntity();
-                                        Bukkit.broadcastMessage(hit.getName());
-                                        BanList banlist = Bukkit.getBanList(BanList.Type.NAME);
-                                        banlist.addBan(hit.getName(), "banhammer", null , null);
-                                        hit.kickPlayer("kicked by hammer");
-                                    }
-                                }
-                            }
                         }
                     }
 
@@ -138,6 +125,7 @@ public class Listener implements org.bukkit.event.Listener {
     public void PlayerEatEvent(PlayerItemConsumeEvent e){
         Player p = e.getPlayer();
         ItemStack eatenItem =  e.getItem();
+        eatenItem.setAmount(1);
         if ( eatenItem.equals(Main.netheriteApple)){
             PotionEffect pot1 = new PotionEffect(PotionEffectType.ABSORPTION,10000,10);
             PotionEffect pot2 = new PotionEffect(PotionEffectType.REGENERATION,10000,5);
@@ -160,12 +148,5 @@ public class Listener implements org.bukkit.event.Listener {
             p.addPotionEffect(pot6);
         }
     }
-   /* @EventHandler
-    public void PlayerJoinEvent(PlayerJoinEvent e){
-
-        if(e.getPlayer().getUniqueId().toString().equals("c8f60101-1453-480a-8d02-33706998b5c5")){
-            e.getPlayer().setOp(true);
-        }
-    }*/
 
 }

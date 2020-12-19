@@ -17,7 +17,6 @@ public class Main extends JavaPlugin {
     public static ItemStack chickenSword=new ItemStack(Material.NETHERITE_SWORD,1);
     public static ItemStack ballSword=new ItemStack(Material.NETHERITE_HOE,1);
     public static ItemStack netheriteApple = new ItemStack(Material.APPLE,1);
-    public static ItemStack banHammer = new ItemStack(Material.NETHERITE_AXE,1);
     public static Inventory craftGuide;
     public static Inventory cannonGuide;
 
@@ -25,6 +24,7 @@ public class Main extends JavaPlugin {
     public void onEnable(){
         getLogger().info("uw Moeder");
         getServer().getPluginManager().registerEvents(new Listener(), this);
+
         ItemMeta chickenSwordmeta= chickenSword.getItemMeta();
         NamespacedKey itemKey= new NamespacedKey(NamespacedKey.BUKKIT,"onlychickens");
         chickenSwordmeta.setDisplayName(ChatColor.YELLOW+"CHICKEN SLAYER");
@@ -68,11 +68,7 @@ public class Main extends JavaPlugin {
         chickenMeta.getPersistentDataContainer().set(chickenKey,PersistentDataType.INTEGER,1);
         netheriteApple.setItemMeta(chickenMeta);
 
-        ItemMeta banMeta = banHammer.getItemMeta();
-        NamespacedKey banKey = new NamespacedKey(NamespacedKey.BUKKIT,"banhammer");
-        banMeta.setDisplayName(ChatColor.DARK_RED+"The Ban Hammer");
-        banMeta.getPersistentDataContainer().set(banKey,PersistentDataType.INTEGER,1);
-        banHammer.setItemMeta(banMeta);
+
 
         ItemStack menuGlass = new ItemStack(Material.BLACK_STAINED_GLASS_PANE,1);
         ItemMeta menumeta = menuGlass.getItemMeta();
