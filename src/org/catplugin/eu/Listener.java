@@ -21,6 +21,8 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Objects;
+
 
 public class Listener implements org.bukkit.event.Listener {
     @EventHandler
@@ -28,7 +30,7 @@ public class Listener implements org.bukkit.event.Listener {
         Player p = event.getPlayer();
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
             ItemStack sword = p.getInventory().getItemInMainHand();
-            NamespacedKey itemKey = new NamespacedKey(NamespacedKey.BUKKIT, "ballz");
+            NamespacedKey itemKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "ballz");
             if (sword.hasItemMeta()) {
                 ItemMeta itemMeta = sword.getItemMeta();
                     PersistentDataContainer container = itemMeta.getPersistentDataContainer();
@@ -56,8 +58,8 @@ public class Listener implements org.bukkit.event.Listener {
                 Player p = (Player) e.getDamager();
                 if (p.getInventory().getItemInMainHand().getType().equals(Material.NETHERITE_SWORD)) {
                     ItemStack sword = p.getInventory().getItemInMainHand();
-                    NamespacedKey itemKey = new NamespacedKey(NamespacedKey.BUKKIT, "onlychickens");
-                    NamespacedKey banKey = new NamespacedKey(NamespacedKey.BUKKIT, "banhammer");
+                    NamespacedKey itemKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "onlychickens");
+                    NamespacedKey banKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "banhammer");
                     if (sword.hasItemMeta()) {
                         ItemMeta itemMeta = sword.getItemMeta();
                         if (itemMeta.getPersistentDataContainer() != null) {
@@ -106,7 +108,7 @@ public class Listener implements org.bukkit.event.Listener {
                         ItemMeta oof = e.getInventory().getItem(2).getItemMeta();
                         if (oof.getPersistentDataContainer() != null) {
                             PersistentDataContainer p = oof.getPersistentDataContainer();
-                            NamespacedKey itemKey = new NamespacedKey(NamespacedKey.BUKKIT, "ballz");
+                            NamespacedKey itemKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "ballz");
                             if (p.has(itemKey, PersistentDataType.INTEGER)) {
                                 if (p.get(itemKey, PersistentDataType.INTEGER).equals(1)) {
                                     e.setCancelled(true);

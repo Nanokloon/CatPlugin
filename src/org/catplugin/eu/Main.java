@@ -9,10 +9,14 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Main extends JavaPlugin {
+
+    public static Scoreboard golemDeath;
 
     public static ItemStack chickenSword=new ItemStack(Material.NETHERITE_SWORD,1);
     public static ItemStack ballSword=new ItemStack(Material.NETHERITE_HOE,1);
@@ -26,7 +30,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Listener(), this);
 
         ItemMeta chickenSwordmeta= chickenSword.getItemMeta();
-        NamespacedKey itemKey= new NamespacedKey(NamespacedKey.BUKKIT,"onlychickens");
+        NamespacedKey itemKey= new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")),"onlychickens");
         chickenSwordmeta.setDisplayName(ChatColor.YELLOW+"CHICKEN SLAYER");
         chickenSwordmeta.getPersistentDataContainer().set(itemKey, PersistentDataType.INTEGER,1);
         chickenSwordmeta.setLore(Arrays.asList(ChatColor.RED+"WHY DO I EXIST",ChatColor.GREEN+"WHY DO I EXIST",ChatColor.BLUE+"WHY DO I EXIST"));
@@ -41,7 +45,7 @@ public class Main extends JavaPlugin {
         recipe.setIngredient('C', Material.CHICKEN);
 
         ItemMeta ballswordmeta= ballSword.getItemMeta();
-        NamespacedKey ballKey= new NamespacedKey(NamespacedKey.BUKKIT,"ballz");
+        NamespacedKey ballKey= new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")),"ballz");
         ballswordmeta.setDisplayName(ChatColor.DARK_RED+"Cannon");
         ballswordmeta.getPersistentDataContainer().set(ballKey, PersistentDataType.INTEGER,1);
         ballswordmeta.setLore(Arrays.asList(ChatColor.RED+"Bestows great power",ChatColor.RED+"to its wielder",ChatColor.BOLD+"RIGHT CLICK FOR FIREBALL (LIMITED USE)"));
@@ -63,7 +67,7 @@ public class Main extends JavaPlugin {
         Bukkit.addRecipe(recipe);
 
         ItemMeta chickenMeta = netheriteApple.getItemMeta();
-        NamespacedKey chickenKey = new NamespacedKey(NamespacedKey.BUKKIT,"netheriteapple");
+        NamespacedKey chickenKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")),"netheriteapple");
         chickenMeta.setDisplayName(ChatColor.DARK_RED+"Netherite Apple");
         chickenMeta.getPersistentDataContainer().set(chickenKey,PersistentDataType.INTEGER,1);
         netheriteApple.setItemMeta(chickenMeta);
@@ -121,11 +125,13 @@ public class Main extends JavaPlugin {
         cannonGuide.setItem(30,new ItemStack(Material.NETHERITE_AXE,0));
 
         cannonGuide.setItem(36,backArrow);
-
+        
         Bukkit.getServer().getPluginManager().registerEvents(new Listener(), this);
         this.getCommand("givecustomitem").setExecutor(new GiveCustomItem());
         this.getCommand("craftguide").setExecutor(new CraftGuide());
         this.getCommand("givecustomitem").setTabCompleter(new TabComplete());
+
+
     }
 
 
