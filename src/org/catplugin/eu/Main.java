@@ -2,6 +2,7 @@ package org.catplugin.eu;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Activity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,15 +15,12 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.Scoreboard;
 
 import javax.security.auth.login.LoginException;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Main extends JavaPlugin{
-
-    public static Scoreboard golemDeath;
+public class Main extends JavaPlugin {
 
     public static ItemStack chickenSword = new ItemStack(Material.NETHERITE_SWORD, 1);
     public static ItemStack ballSword = new ItemStack(Material.NETHERITE_HOE, 1);
@@ -31,9 +29,9 @@ public class Main extends JavaPlugin{
     public static Inventory cannonGuide;
 
 
-    public static final String TOKEN = "UrMom";
-    public final String PREFIX = "n!";
+    public static final String TOKEN = "uuw";
     public static JDA jda = null;
+    JDABuilder builder = null;
     public static boolean run = false;
     @Override
     public void onEnable() {
@@ -44,6 +42,7 @@ public class Main extends JavaPlugin{
         } catch (LoginException e) {
             e.printStackTrace();
         }
+        builder = JDABuilder.createDefault(TOKEN);
 
         if(jda == null){
             getLogger().info("jda null");
@@ -58,8 +57,8 @@ public class Main extends JavaPlugin{
         }
 
        // getLogger().info(String.valueOf(jda.getGuilds().size()));
-
-
+        jda.addEventListener(new DiscordListener());
+        builder.setActivity(Activity.playing("the SMP"));
 
         ItemMeta chickenSwordmeta = chickenSword.getItemMeta();
         NamespacedKey itemKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "onlychickens");
@@ -169,4 +168,5 @@ public class Main extends JavaPlugin{
     public void onDisable() {
         jda.shutdown();
     }
+
 }
