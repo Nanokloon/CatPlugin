@@ -31,7 +31,7 @@ public class Main extends JavaPlugin{
     public static Inventory cannonGuide;
 
 
-    public static final String TOKEN = "NOPE";
+    public static final String TOKEN = "UrMom";
     public final String PREFIX = "n!";
     public static JDA jda = null;
     public static boolean run = false;
@@ -165,5 +165,8 @@ public class Main extends JavaPlugin{
 
     }
 
-
+    @Override
+    public void onDisable() {
+        jda.shutdown();
+    }
 }
