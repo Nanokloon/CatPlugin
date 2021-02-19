@@ -1,6 +1,11 @@
 package org.catplugin.eu;
 
-import org.bukkit.*;
+
+import net.dv8tion.jda.api.entities.MessageChannel;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
@@ -10,6 +15,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.InventoryView;
@@ -22,6 +28,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.Objects;
+
+import static org.catplugin.eu.Main.run;
 
 
 public class Listener implements org.bukkit.event.Listener {
@@ -37,6 +45,7 @@ public class Listener implements org.bukkit.event.Listener {
                     if (container.has(itemKey, PersistentDataType.INTEGER)) {
                         if (container.get(itemKey, PersistentDataType.INTEGER) == 1) {
                             p.launchProjectile(Fireball.class);
+                            
                             Damageable damage = (Damageable) sword.getItemMeta();
                             damage.setDamage(damage.getDamage() + 1);
                             sword.setItemMeta((ItemMeta) damage);
@@ -148,6 +157,21 @@ public class Listener implements org.bukkit.event.Listener {
                 }
             }
             p.addPotionEffect(pot6);
+        }
+    }
+
+
+    @EventHandler
+    public void MessageRecivedEvent(AsyncPlayerChatEvent event) throws InterruptedException {
+        String playerName = event.getPlayer().getName();
+        String text = event.getMessage();
+        MessageChannel channel = Main.jda.awaitReady().getGuildById("712092358711181325").getTextChannelById("812370653223190568");
+        if(run==false) {
+            channel.sendMessage(playerName + ": " + text).queue();
+            run=true;
+        }
+        else{
+            run=false;
         }
     }
 
