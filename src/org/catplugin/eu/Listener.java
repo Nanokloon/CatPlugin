@@ -1,13 +1,13 @@
 package org.catplugin.eu;
 
 
-import com.codingforcookies.armorequip.ArmorEquipEvent;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
@@ -18,8 +18,10 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -29,12 +31,13 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.UUID;
 
-import static org.catplugin.eu.Functions.getGuild;
 import static org.catplugin.eu.Main.*;
 
 
 public class Listener implements org.bukkit.event.Listener {
+    public boolean ranOnce = false;
     @EventHandler
     public void PlayerInteractEvent(PlayerInteractEvent event ) {
         Player p = event.getPlayer();
@@ -107,6 +110,57 @@ public class Listener implements org.bukkit.event.Listener {
                     }
         }
     }
+        if(e.getClickedInventory().getType().equals(InventoryType.SMITHING)) {
+            SmithingInventory smithingInventory = (SmithingInventory) e.getClickedInventory();
+            NamespacedKey heartyKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "hearty");
+            
+            if (e.getClickedInventory().getItem(0)!=null) {
+                if (e.getClickedInventory().getItem(0).getItemMeta().getPersistentDataContainer().has(heartyKey, PersistentDataType.INTEGER)) {
+                    if (e.getClickedInventory().getItem(0).getItemMeta().getPersistentDataContainer().get(heartyKey, PersistentDataType.INTEGER).equals(1)) {
+                        if (e.getClickedInventory().getItem(0).getType().equals(Material.DIAMOND_HELMET)) {
+                                if(e.getClickedInventory().getItem(2)!=null) {
+                                ItemMeta meta = e.getClickedInventory().getItem(2).getItemMeta();
+                                Damageable damageable = (Damageable) meta;
+                                ItemStack nethHelm = Main.netheriteHeartyHelmet;
+                                Damageable nethDmg = (Damageable) nethHelm.getItemMeta();
+                                nethDmg.setDamage(damageable.getDamage());
+                                e.getClickedInventory().getItem(3).setItemMeta((ItemMeta) nethDmg);
+                            }
+                        }
+                        else if (e.getClickedInventory().getItem(0).getType().equals(Material.DIAMOND_CHESTPLATE)){
+                            if(e.getClickedInventory().getItem(2)!=null) {
+                                ItemMeta meta = e.getClickedInventory().getItem(2).getItemMeta();
+                                Damageable damageable = (Damageable) meta;
+                                ItemStack nethHelm = netheriteHeartyChestplate;
+                                Damageable nethDmg = (Damageable) nethHelm.getItemMeta();
+                                nethDmg.setDamage(damageable.getDamage());
+                                e.getClickedInventory().getItem(3).setItemMeta((ItemMeta) nethDmg);
+                            }
+                        }
+                        else if (e.getClickedInventory().getItem(0).getType().equals(Material.DIAMOND_LEGGINGS)){
+                            if(e.getClickedInventory().getItem(2)!=null) {
+                                ItemMeta meta = e.getClickedInventory().getItem(2).getItemMeta();
+                                Damageable damageable = (Damageable) meta;
+                                ItemStack nethHelm = netheriteHeartyLeggings;
+                                Damageable nethDmg = (Damageable) nethHelm.getItemMeta();
+                                nethDmg.setDamage(damageable.getDamage());
+                                e.getClickedInventory().getItem(3).setItemMeta((ItemMeta) nethDmg);
+                            }
+                        }
+                        else if (e.getClickedInventory().getItem(0).getType().equals(Material.DIAMOND_BOOTS)){
+                            if(e.getClickedInventory().getItem(2)!=null) {
+                                ItemMeta meta = e.getClickedInventory().getItem(2).getItemMeta();
+                                Damageable damageable = (Damageable) meta;
+                                ItemStack nethHelm = netheriteHeartyBoots;
+                                Damageable nethDmg = (Damageable) nethHelm.getItemMeta();
+                                nethDmg.setDamage(damageable.getDamage());
+                                e.getClickedInventory().getItem(3).setItemMeta((ItemMeta) nethDmg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         //e.getWhoClicked().sendMessage(e.getInventory().getType().toString());
         if (e.getCurrentItem() == null) {

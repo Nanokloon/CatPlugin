@@ -28,6 +28,16 @@ public class GiveCustomItem implements CommandExecutor {
             p.getInventory().addItem(Main.heartyChestplate);
             p.sendMessage(ChatColor.RED+"Gave Hearty Chestplate");
         }
+        else if(what.equals("heartyhelmet")){
+            p.getInventory().addItem(Main.heartyHelmet);
+            p.sendMessage(ChatColor.RED+"Gave Hearty Helmet");
+        }else if(what.equals("heartylegs")){
+            p.getInventory().addItem(Main.heartyLeggings);
+            p.sendMessage(ChatColor.RED+"Gave Hearty Leggings");
+        }else if(what.equals("heartyboots")){
+            p.getInventory().addItem(Main.heartyBoots);
+            p.sendMessage(ChatColor.RED+"Gave Hearty Boots");
+        }
 
 
         return true;

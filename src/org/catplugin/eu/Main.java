@@ -4,25 +4,24 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.catplugin.eu.Armor.HeartyChestplate;
+import org.catplugin.eu.Armor.Hearty.HeartyBoots;
+import org.catplugin.eu.Armor.Hearty.HeartyChestplate;
+import org.catplugin.eu.Armor.Hearty.HeartyHelmet;
+import org.catplugin.eu.Armor.Hearty.HeartyLeggings;
+import org.catplugin.eu.Armor.NetheriteHearty.NetheriteHeartyBoots;
+import org.catplugin.eu.Armor.NetheriteHearty.NetheriteHeartyChestplate;
+import org.catplugin.eu.Armor.NetheriteHearty.NetheriteHeartyHelmet;
+import org.catplugin.eu.Armor.NetheriteHearty.NetheriteHeartyLeggings;
 import org.catplugin.eu.Items.Cannon;
 import org.catplugin.eu.Items.ChickenSword;
 import org.catplugin.eu.Items.NetheriteApple;
 
 import javax.security.auth.login.LoginException;
-import java.util.Arrays;
-import java.util.Objects;
 
 public class Main extends JavaPlugin {
 
@@ -36,9 +35,17 @@ public class Main extends JavaPlugin {
     public static ItemStack nextArrow = new ItemStack(Material.ARROW, 1);
     public static boolean on = true;
 
+    public static ItemStack heartyHelmet = new ItemStack(Material.DIAMOND_HELMET,1);
     public static ItemStack heartyChestplate = new ItemStack(Material.DIAMOND_CHESTPLATE,1);
+    public static ItemStack heartyLeggings = new ItemStack(Material.DIAMOND_LEGGINGS,1);
+    public static ItemStack heartyBoots = new ItemStack(Material.DIAMOND_BOOTS,1);
 
-    public static final String TOKEN = "niet";
+    public static ItemStack netheriteHeartyHelmet = new ItemStack(Material.NETHERITE_HELMET,1);
+    public static ItemStack netheriteHeartyChestplate = new ItemStack(Material.NETHERITE_CHESTPLATE,1);
+    public static ItemStack netheriteHeartyLeggings = new ItemStack(Material.NETHERITE_LEGGINGS,1);
+    public static ItemStack netheriteHeartyBoots = new ItemStack(Material.NETHERITE_BOOTS,1);
+
+    public static final String TOKEN = "ODExOTI5NTEyNTEzMjQxMTE4.YC5WSA.Do9mzE9GbSH_sy9lYr_bdaO50f8";
     public static JDA jda = null;
     public static JDABuilder builder = null;
     public static boolean run = false;
@@ -75,8 +82,16 @@ public class Main extends JavaPlugin {
         ChickenSword.init();
         Cannon.init();
         NetheriteApple.init();
-        HeartyChestplate.init();
 
+        HeartyHelmet.init();
+        HeartyChestplate.init();
+        HeartyLeggings.init();
+        HeartyBoots.init();
+
+        NetheriteHeartyHelmet.init();
+        NetheriteHeartyChestplate.init();
+        NetheriteHeartyLeggings.init();
+        NetheriteHeartyBoots.init();
         Bukkit.addRecipe(Cannon.makeRecipe());
         Bukkit.addRecipe(ChickenSword.makeRecipe());
 
