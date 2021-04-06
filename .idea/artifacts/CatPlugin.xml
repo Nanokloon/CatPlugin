@@ -4,7 +4,6 @@
     <root id="archive" name="CatPlugin.jar">
       <element id="module-output" name="CatPlugin+Discord" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../JDA-4.2.0_168-withDependencies.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../ArmorEquipEvent-1.7.2.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
