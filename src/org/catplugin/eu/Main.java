@@ -45,7 +45,7 @@ public class Main extends JavaPlugin {
     public static ItemStack netheriteHeartyLeggings = new ItemStack(Material.NETHERITE_LEGGINGS,1);
     public static ItemStack netheriteHeartyBoots = new ItemStack(Material.NETHERITE_BOOTS,1);
 
-    public static final String TOKEN = "ODExOTI5NTEyNTEzMjQxMTE4.YC5WSA.rTme9Ch_BASSjhdNmSryKCTa1Cs";
+    public static final String TOKEN = "neup";
     public static JDA jda = null;
     public static JDABuilder builder = null;
     public static boolean run = false;
