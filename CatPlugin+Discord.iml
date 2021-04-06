@@ -20,18 +20,27 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../CoderDojo/1.16.4/spigot-1.16.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../JDA-4.2.0_168-withDependencies.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../CoderDojo/1.16.5/spigot-1.16.5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../CoderDojo/1.16.4/spigot-1.16.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CoderDojo/1.16.5/spigot-1.16.5.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../JDA-4.2.0_168-withDependencies.jar!/" />
+          <root url="jar://$MODULE_DIR$/../ArmorEquipEvent-1.7.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

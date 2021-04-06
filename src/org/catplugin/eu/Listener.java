@@ -1,11 +1,13 @@
 package org.catplugin.eu;
 
 
+import com.codingforcookies.armorequip.ArmorEquipEvent;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
@@ -15,9 +17,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
@@ -27,9 +27,11 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.io.IOException;
 import java.util.Objects;
 
-import static org.catplugin.eu.Main.run;
+import static org.catplugin.eu.Functions.getGuild;
+import static org.catplugin.eu.Main.*;
 
 
 public class Listener implements org.bukkit.event.Listener {
@@ -162,18 +164,61 @@ public class Listener implements org.bukkit.event.Listener {
 
 
     @EventHandler
-    public void MessageRecivedEvent(AsyncPlayerChatEvent event) throws InterruptedException {
+    public void MessageRecivedEvent(AsyncPlayerChatEvent event) throws InterruptedException, IOException {
         String playerName = event.getPlayer().getName();
         String text = event.getMessage();
         MessageChannel channel = Main.jda.awaitReady().getGuildById("712092358711181325").getTextChannelById("812370653223190568");
-        if(run==false) {
-            channel.sendMessage(playerName + ": " + text).queue();
-            run=true;
-        }
-        else{
-            run=false;
+        if (on == true) {
+            if (run == false) {
+                if (text.contains("@everyone") || text.contains("@here")) {
+                    text = "Dont @ everyone or i snap ur neck";
+                }
+                channel.sendMessage(playerName + ": " + text).queue();
+                run = true;
+            } else {
+                run = false;
+            }
         }
     }
 
+    @EventHandler
+    public void PlayerJoinEvent(PlayerJoinEvent event) throws InterruptedException {
+        String playerName = event.getPlayer().getName();
+        MessageChannel channel = Main.jda.awaitReady().getGuildById("712092358711181325").getTextChannelById("812370653223190568");
+        if(owo==false) {
+            channel.sendMessage(playerName + " has joined the SMP.").queue();
+            owo=true;
+        }
+        else{
+            owo=false;
+        }
+    }
+
+    @EventHandler
+    public void PlayerLeaveEvent(PlayerQuitEvent event) throws InterruptedException {
+        String playerName = event.getPlayer().getName();
+        MessageChannel channel = Main.jda.awaitReady().getGuildById("712092358711181325").getTextChannelById("812370653223190568");
+        if (uwu == false) {
+            channel.sendMessage(playerName + " has left the SMP.").queue();
+            uwu=true;
+        }
+        else{
+            uwu=false;
+        }
+    }
+    @EventHandler
+    public void ArmorEquipEvent(ArmorEquipEvent event){
+        Player p = event.getPlayer();
+        if(event.getNewArmorPiece().getType().equals(Material.DIAMOND_CHESTPLATE)){
+            ItemStack newPiece =  event.getNewArmorPiece();
+            ItemMeta newMeta = newPiece.getItemMeta();
+            Damageable damage = (Damageable) newMeta;
+            damage.setDamage(0);
+            newPiece.setItemMeta((ItemMeta) damage);
+            p.sendMessage(newMeta.getDisplayName());
+
+        }
+
+    }
 
 }

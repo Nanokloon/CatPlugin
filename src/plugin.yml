@@ -9,6 +9,12 @@ commands:
     permission: <plugin name>.basic
     permission-message:
 
+  togglediscord:
+    description: toggles discord logging
+    usage: /<command>
+    permission: <plugin name>.basic
+    permission-message:
+
   craftguide:
 
       description: can give cannon , chickensword
