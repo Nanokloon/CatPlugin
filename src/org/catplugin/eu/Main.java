@@ -28,11 +28,8 @@ public class Main extends JavaPlugin {
     public static ItemStack chickenSword = new ItemStack(Material.NETHERITE_SWORD, 1);
     public static ItemStack ballSword = new ItemStack(Material.NETHERITE_HOE, 1);
     public static ItemStack netheriteApple = new ItemStack(Material.APPLE, 1);
-    public static Inventory craftGuide;
-    public static Inventory cannonGuide;
     public static ItemStack menuGlass = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
-    public static ItemStack backArrow = new ItemStack(Material.ARROW, 1);
-    public static ItemStack nextArrow = new ItemStack(Material.ARROW, 1);
+
     public static boolean on = true;
 
     public static ItemStack heartyHelmet = new ItemStack(Material.DIAMOND_HELMET,1);
@@ -47,35 +44,29 @@ public class Main extends JavaPlugin {
 
     public static final String TOKEN = GitignoredFile.botToken();
     public static JDA jda = null;
-    public static JDABuilder builder = null;
     public static boolean run = false;
     public static boolean owo = false;
     public static boolean uwu = false;
 
+    public static Inventory craftGuide;
+    public static Inventory cannonGuide;
+    public static Inventory heartyBootsGuide;
+    public static Inventory heartyLegsGuide;
+    public static Inventory heartyChestplateGuide;
+    public static Inventory heartyHelmetGuide;
     @Override
     public void onEnable() {
         getLogger().info("uw Moeder");
         getServer().getPluginManager().registerEvents(new Listener(), this);
+
+        JDABuilder builder = JDABuilder.createDefault(TOKEN);
         try {
-            jda = JDABuilder.createDefault(TOKEN).build();
+            jda = builder.build();
         } catch (LoginException e) {
             e.printStackTrace();
         }
-        builder = JDABuilder.createDefault(TOKEN);
 
-        if(jda == null){
-            getLogger().info("jda null");
-        }
-        else{
-            getLogger().info(jda.getToken());
-        }
-        try {
-            getLogger().info(String.valueOf(jda.awaitReady().getGuilds().size()));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-       // getLogger().info(String.valueOf(jda.getGuilds().size()));
+        // getLogger().info(String.valueOf(jda.getGuilds().size()));
         jda.addEventListener(new DiscordListener());
         builder.setActivity(Activity.playing("the SMP"));
 
@@ -106,17 +97,20 @@ public class Main extends JavaPlugin {
         menumeta.setDisplayName(" ");
         menuGlass.setItemMeta(menumeta);
 
+        ItemStack backArrow = new ItemStack(Material.ARROW, 1);
+
+
         ItemMeta backMeta = backArrow.getItemMeta();
         backMeta.setDisplayName("Back");
         backArrow.setItemMeta(backMeta);
 
-        ItemMeta nextMeta = nextArrow.getItemMeta();
-        nextMeta.setDisplayName("Next");
-        nextArrow.setItemMeta(nextMeta);
-
         ChickenSword.makeGuide();
         Cannon.makeGuide();
 
+        HeartyBoots.makeGuide();
+        HeartyLeggings.makeGuide();
+        HeartyChestplate.makeGuide();
+        HeartyHelmet.makeGuide();
 
         Bukkit.getServer().getPluginManager().registerEvents(new Listener(), this);
 

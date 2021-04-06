@@ -7,6 +7,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -14,6 +15,8 @@ import org.catplugin.eu.Main;
 
 import java.util.Objects;
 import java.util.UUID;
+
+import static org.catplugin.eu.Functions.makeArrow;
 
 public class HeartyLeggings {
     public static void init(){
@@ -42,6 +45,28 @@ public class HeartyLeggings {
         heartyRecipe.setIngredient('X', Material.DIAMOND);
         heartyRecipe.setIngredient('Y',Material.DIAMOND_BLOCK);
         return heartyRecipe;
+
+    }
+    public static void makeGuide(){
+        Main.heartyLegsGuide = Bukkit.createInventory(null, 45, "CraftGuide");
+
+
+        for (int i = 0; i < 45; i++) {
+            Main.heartyLegsGuide.setItem(i, Main.menuGlass);
+        }
+        Main.heartyLegsGuide.setItem(10, new ItemStack(Material.DIAMOND_BLOCK, 1));
+        Main.heartyLegsGuide.setItem(11, new ItemStack(Material.DIAMOND_BLOCK, 1));
+        Main.heartyLegsGuide.setItem(12, new ItemStack(Material.DIAMOND_BLOCK, 1));
+        Main.heartyLegsGuide.setItem(19, new ItemStack(Material.DIAMOND, 1));
+        Main.heartyLegsGuide.setItem(20, new ItemStack(Material.DIAMOND_BLOCK, 0));
+        Main.heartyLegsGuide.setItem(21, new ItemStack(Material.DIAMOND, 1));
+        Main.heartyLegsGuide.setItem(25, Main.heartyLeggings);
+        Main.heartyLegsGuide.setItem(28, new ItemStack(Material.DIAMOND, 1));
+        Main.heartyLegsGuide.setItem(29, new ItemStack(Material.STICK, 0));
+        Main.heartyLegsGuide.setItem(30, new ItemStack(Material.DIAMOND, 1));
+
+        Main.heartyLegsGuide.setItem(36, makeArrow("Back (Hearty Boots)"));
+        Main.heartyLegsGuide.setItem(44, makeArrow("Next (Hearty Chestplate)"));
 
     }
 }

@@ -10,7 +10,7 @@ public class CraftGuide implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
         p.openInventory(Main.craftGuide);
-        ((Player) commandSender).openInventory(Main.craftGuide);
+
         return true;
     }
 }

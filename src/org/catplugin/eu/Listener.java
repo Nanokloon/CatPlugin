@@ -105,15 +105,37 @@ public class Listener implements org.bukkit.event.Listener {
         InventoryView i = e.getView();
         if (i.getTitle().equals("CraftGuide")) {
             e.setCancelled(true);
-            if (e.getCurrentItem() != null){
-                if (e.getCurrentItem().hasItemMeta())
-                    if (e.getCurrentItem().getItemMeta().getDisplayName().equals("Next")) {
-                        e.getWhoClicked().openInventory(Main.cannonGuide);
-                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals("Back")) {
-                        e.getWhoClicked().openInventory(Main.craftGuide);
+            if (e.getCurrentItem() != null) {
+                if (e.getCurrentItem().hasItemMeta()) {
+                    String string =ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName());
+                    switch(string) {
+                        case "Next (Cannon)":
+                        case "Back (Cannon)":
+                            e.getWhoClicked().openInventory(cannonGuide);
+                            break;
+                        case "Back (Chicken Slayer)":
+                            e.getWhoClicked().openInventory(craftGuide);
+                            break;
+                        case "Next (Hearty Boots)":
+                        case "Back (Hearty Boots)":
+                            e.getWhoClicked().openInventory(heartyBootsGuide);
+                            break;
+                        case "Next (Hearty Leggings)":
+                        case "Back (Hearty Leggings)":
+                            e.getWhoClicked().openInventory(heartyLegsGuide);
+                            break;
+                        case "Next (Hearty Chestplate)":
+                        case "Back (Hearty Chestplate)":
+                            e.getWhoClicked().openInventory(heartyChestplateGuide);
+                            break;
+                        case "Next (Hearty Helmet)":
+                        case "Back (Hearty Helmet)":
+                            e.getWhoClicked().openInventory(heartyHelmetGuide);
+                            break;
                     }
+                }
+            }
         }
-    }
         if(e.getClickedInventory()!=null){
         if(e.getClickedInventory().getType().equals(InventoryType.SMITHING)) {
             SmithingInventory smithingInventory = (SmithingInventory) e.getClickedInventory();

@@ -9,11 +9,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.catplugin.eu.Functions;
 import org.catplugin.eu.Main;
 
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Objects;
+
+import static org.catplugin.eu.Functions.makeArrow;
 
 public class ChickenSword {
     public static void init(){
@@ -52,6 +55,6 @@ public class ChickenSword {
         Main.craftGuide.setItem(29, new ItemStack(Material.STICK, 1));
         Main.craftGuide.setItem(30, new ItemStack(Material.CHICKEN, 1));
 
-        Main.craftGuide.setItem(44, Main.nextArrow);
+        Main.craftGuide.setItem(44, makeArrow("Next (Cannon)"));
     }
 }

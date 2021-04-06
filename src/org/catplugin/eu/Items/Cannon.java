@@ -1,5 +1,6 @@
 package org.catplugin.eu.Items;
 
+import com.mojang.datafixers.types.Func;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -9,6 +10,7 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.catplugin.eu.Functions;
 import org.catplugin.eu.Main;
 
 import java.util.Arrays;
@@ -53,7 +55,9 @@ public class Cannon {
         Main.cannonGuide.setItem(29, new ItemStack(Material.BLAZE_ROD, 1));
         Main.cannonGuide.setItem(30, new ItemStack(Material.NETHERITE_AXE, 0));
 
-        Main.cannonGuide.setItem(36, Main.backArrow);
+        Main.cannonGuide.setItem(36, Functions.makeArrow("Back (Chicken Slayer)"));
+        Main.cannonGuide.setItem(44, Functions.makeArrow("Next (Hearty Boots)"));
+
 
     }
 }

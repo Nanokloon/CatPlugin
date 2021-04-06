@@ -14,7 +14,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
-import static org.catplugin.eu.Functions.getGuild;
+
 
 public class DiscordListener extends ListenerAdapter {
     @Override
