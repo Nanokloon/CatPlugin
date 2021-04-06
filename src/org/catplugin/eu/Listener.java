@@ -8,9 +8,11 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -30,7 +32,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 import static org.catplugin.eu.Main.*;
@@ -110,6 +114,7 @@ public class Listener implements org.bukkit.event.Listener {
                     }
         }
     }
+        if(e.getClickedInventory()!=null){
         if(e.getClickedInventory().getType().equals(InventoryType.SMITHING)) {
             SmithingInventory smithingInventory = (SmithingInventory) e.getClickedInventory();
             NamespacedKey heartyKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "hearty");
@@ -119,46 +124,27 @@ public class Listener implements org.bukkit.event.Listener {
                     if (e.getClickedInventory().getItem(0).getItemMeta().getPersistentDataContainer().get(heartyKey, PersistentDataType.INTEGER).equals(1)) {
                         if (e.getClickedInventory().getItem(0).getType().equals(Material.DIAMOND_HELMET)) {
                                 if(e.getClickedInventory().getItem(2)!=null) {
-                                ItemMeta meta = e.getClickedInventory().getItem(2).getItemMeta();
-                                Damageable damageable = (Damageable) meta;
-                                ItemStack nethHelm = Main.netheriteHeartyHelmet;
-                                Damageable nethDmg = (Damageable) nethHelm.getItemMeta();
-                                nethDmg.setDamage(damageable.getDamage());
-                                e.getClickedInventory().getItem(3).setItemMeta((ItemMeta) nethDmg);
+                                upgradeNetherite(e,netheriteHeartyHelmet);
                             }
                         }
                         else if (e.getClickedInventory().getItem(0).getType().equals(Material.DIAMOND_CHESTPLATE)){
                             if(e.getClickedInventory().getItem(2)!=null) {
-                                ItemMeta meta = e.getClickedInventory().getItem(2).getItemMeta();
-                                Damageable damageable = (Damageable) meta;
-                                ItemStack nethHelm = netheriteHeartyChestplate;
-                                Damageable nethDmg = (Damageable) nethHelm.getItemMeta();
-                                nethDmg.setDamage(damageable.getDamage());
-                                e.getClickedInventory().getItem(3).setItemMeta((ItemMeta) nethDmg);
+                                upgradeNetherite(e,netheriteHeartyChestplate);
                             }
                         }
                         else if (e.getClickedInventory().getItem(0).getType().equals(Material.DIAMOND_LEGGINGS)){
                             if(e.getClickedInventory().getItem(2)!=null) {
-                                ItemMeta meta = e.getClickedInventory().getItem(2).getItemMeta();
-                                Damageable damageable = (Damageable) meta;
-                                ItemStack nethHelm = netheriteHeartyLeggings;
-                                Damageable nethDmg = (Damageable) nethHelm.getItemMeta();
-                                nethDmg.setDamage(damageable.getDamage());
-                                e.getClickedInventory().getItem(3).setItemMeta((ItemMeta) nethDmg);
+                                upgradeNetherite(e,netheriteHeartyLeggings);
                             }
                         }
                         else if (e.getClickedInventory().getItem(0).getType().equals(Material.DIAMOND_BOOTS)){
                             if(e.getClickedInventory().getItem(2)!=null) {
-                                ItemMeta meta = e.getClickedInventory().getItem(2).getItemMeta();
-                                Damageable damageable = (Damageable) meta;
-                                ItemStack nethHelm = netheriteHeartyBoots;
-                                Damageable nethDmg = (Damageable) nethHelm.getItemMeta();
-                                nethDmg.setDamage(damageable.getDamage());
-                                e.getClickedInventory().getItem(3).setItemMeta((ItemMeta) nethDmg);
+                                upgradeNetherite(e,netheriteHeartyBoots);
                             }
                         }
                     }
                 }
+            }
             }
         }
 
@@ -261,5 +247,21 @@ public class Listener implements org.bukkit.event.Listener {
         }
     }
 
+    public void upgradeNetherite(InventoryClickEvent e , ItemStack upgradeStack){
+        ItemMeta meta = e.getClickedInventory().getItem(2).getItemMeta();
+        Damageable damageable = (Damageable) meta;
+        ItemStack nethHelm = upgradeStack;
+        Map<Enchantment, Integer> enchantmentMap = meta.getEnchants();
+        Set<Enchantment> enchantments = enchantmentMap.keySet();
+        Object ench[] = enchantments.toArray();
+        ItemMeta nethmeta = nethHelm.getItemMeta();
+        for(int j = 0 ; j<ench.length;j++) {
+            nethmeta.addEnchant((Enchantment) ench[j],enchantmentMap.get(ench[j]),true);
+        }
+        Damageable nethDmg = (Damageable) nethmeta;
+        nethDmg.setDamage(damageable.getDamage());
+
+        e.getClickedInventory().getItem(3).setItemMeta((ItemMeta) nethDmg);
+    }
 
 }

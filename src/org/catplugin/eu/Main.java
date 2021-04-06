@@ -45,7 +45,7 @@ public class Main extends JavaPlugin {
     public static ItemStack netheriteHeartyLeggings = new ItemStack(Material.NETHERITE_LEGGINGS,1);
     public static ItemStack netheriteHeartyBoots = new ItemStack(Material.NETHERITE_BOOTS,1);
 
-    public static final String TOKEN = "ODExOTI5NTEyNTEzMjQxMTE4.YC5WSA.Do9mzE9GbSH_sy9lYr_bdaO50f8";
+    public static final String TOKEN = "ODExOTI5NTEyNTEzMjQxMTE4.YC5WSA.rTme9Ch_BASSjhdNmSryKCTa1Cs";
     public static JDA jda = null;
     public static JDABuilder builder = null;
     public static boolean run = false;
@@ -92,6 +92,12 @@ public class Main extends JavaPlugin {
         NetheriteHeartyChestplate.init();
         NetheriteHeartyLeggings.init();
         NetheriteHeartyBoots.init();
+
+        Bukkit.addRecipe(HeartyBoots.makeRecipe());
+        Bukkit.addRecipe(HeartyLeggings.makeRecipe());
+        Bukkit.addRecipe(HeartyHelmet.makeRecipe());
+        Bukkit.addRecipe(HeartyChestplate.makeRecipe());
+
         Bukkit.addRecipe(Cannon.makeRecipe());
         Bukkit.addRecipe(ChickenSword.makeRecipe());
 

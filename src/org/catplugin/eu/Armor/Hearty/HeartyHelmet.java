@@ -3,10 +3,12 @@ package org.catplugin.eu.Armor.Hearty;
 import com.google.common.collect.Multimap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.catplugin.eu.Main;
@@ -30,6 +32,15 @@ public class HeartyHelmet {
         heartyMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS,toughModifier);
         Main.heartyHelmet.setItemMeta(heartyMeta);
 
+
+    }
+    public static ShapedRecipe makeRecipe(){
+        NamespacedKey z = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "hHelm");
+        ShapedRecipe helmRecipe = new ShapedRecipe(z, Main.heartyHelmet);
+        helmRecipe.shape("XXX", "Y Y", "   ");
+        helmRecipe.setIngredient('X', Material.DIAMOND);
+        helmRecipe.setIngredient('Y',Material.DIAMOND_BLOCK);
+        return helmRecipe;
 
     }
 }

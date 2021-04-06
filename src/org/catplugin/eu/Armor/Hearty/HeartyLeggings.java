@@ -2,10 +2,12 @@ package org.catplugin.eu.Armor.Hearty;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.catplugin.eu.Main;
@@ -31,6 +33,15 @@ public class HeartyLeggings {
         heartyMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS,toughModifier);
         Main.heartyLeggings.setItemMeta(heartyMeta);
 
+
+    }
+    public static ShapedRecipe makeRecipe(){
+        NamespacedKey z = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "hLegs");
+        ShapedRecipe heartyRecipe = new ShapedRecipe(z, Main.heartyLeggings);
+        heartyRecipe.shape("YYY", "X X", "X X");
+        heartyRecipe.setIngredient('X', Material.DIAMOND);
+        heartyRecipe.setIngredient('Y',Material.DIAMOND_BLOCK);
+        return heartyRecipe;
 
     }
 }
