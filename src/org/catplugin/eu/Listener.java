@@ -206,19 +206,6 @@ public class Listener implements org.bukkit.event.Listener {
             uwu=false;
         }
     }
-    @EventHandler
-    public void ArmorEquipEvent(ArmorEquipEvent event){
-        Player p = event.getPlayer();
-        if(event.getNewArmorPiece().getType().equals(Material.DIAMOND_CHESTPLATE)){
-            ItemStack newPiece =  event.getNewArmorPiece();
-            ItemMeta newMeta = newPiece.getItemMeta();
-            Damageable damage = (Damageable) newMeta;
-            damage.setDamage(0);
-            newPiece.setItemMeta((ItemMeta) damage);
-            p.sendMessage(newMeta.getDisplayName());
 
-        }
-
-    }
 
 }
