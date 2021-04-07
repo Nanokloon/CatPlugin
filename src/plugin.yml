@@ -19,3 +19,9 @@ commands:
 
       description: can give cannon , chickensword
       usage: /<command>
+
+  testcmd:
+    description: testentity
+    usage: /<command>
+    permission: <plugin name>.basic
+    permission-message:

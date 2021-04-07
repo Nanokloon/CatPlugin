@@ -1,4 +1,4 @@
-package org.catplugin.eu;
+package org.catplugin.eu.Commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

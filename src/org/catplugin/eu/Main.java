@@ -17,6 +17,10 @@ import org.catplugin.eu.Armor.NetheriteHearty.NetheriteHeartyBoots;
 import org.catplugin.eu.Armor.NetheriteHearty.NetheriteHeartyChestplate;
 import org.catplugin.eu.Armor.NetheriteHearty.NetheriteHeartyHelmet;
 import org.catplugin.eu.Armor.NetheriteHearty.NetheriteHeartyLeggings;
+import org.catplugin.eu.Commands.GiveCustomItem;
+import org.catplugin.eu.Commands.TabComplete;
+import org.catplugin.eu.Commands.TestCmd;
+import org.catplugin.eu.Commands.ToggleDiscordChat;
 import org.catplugin.eu.Items.Cannon;
 import org.catplugin.eu.Items.ChickenSword;
 import org.catplugin.eu.Items.NetheriteApple;
@@ -118,7 +122,7 @@ public class Main extends JavaPlugin {
         this.getCommand("craftguide").setExecutor(new CraftGuide());
         this.getCommand("givecustomitem").setTabCompleter(new TabComplete());
         this.getCommand("togglediscord").setExecutor(new ToggleDiscordChat());
-
+        this.getCommand("testcmd").setExecutor(new TestCmd());
     }
 
     @Override
