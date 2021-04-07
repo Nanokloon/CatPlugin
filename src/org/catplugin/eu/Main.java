@@ -123,6 +123,7 @@ public class Main extends JavaPlugin {
         this.getCommand("givecustomitem").setTabCompleter(new TabComplete());
         this.getCommand("togglediscord").setExecutor(new ToggleDiscordChat());
         this.getCommand("testcmd").setExecutor(new TestCmd());
+        this.getCommand("spawnboss").setExecutor(new SpawnBoss());
     }
 
     @Override
