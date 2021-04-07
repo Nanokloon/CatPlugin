@@ -1,6 +1,7 @@
 package org.catplugin.eu.Commands;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Wither;
 import org.bukkit.event.EventHandler;
@@ -25,10 +26,10 @@ public class SpawnBoss implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
-            Player player = (Player) commandSender;
-            WitherSkele skele = new WitherSkele(player.getLocation(), player);
-            WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
-            world.addEntity(skele);
+        Player player = (Player) commandSender;
+        WitherSkele skele = new WitherSkele(player.getLocation(), player);
+        WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
+        world.addEntity(skele);
 
         return false;
     }
@@ -43,8 +44,11 @@ public class SpawnBoss implements CommandExecutor {
                 for (Entity entity : nearby)
                     if (entity instanceof Player) {
                         entity.sendMessage(ChatColor.DARK_RED + "For every one you kill you get closer to the final boss");
+                        TimeUnit.SECONDS.sleep(1);
                         entity.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "I WILL AVENGE MY BROTHERS");
+                        TimeUnit.SECONDS.sleep(1);
                         entity.sendMessage(ChatColor.DARK_RED + "We have been trapped forever, but soon....");
+                        TimeUnit.SECONDS.sleep(1);
                         entity.sendMessage(ChatColor.DARK_RED + "WE WILL BE OUT");
                         long time = entity.getWorld().getTime();
                         entity.getWorld().setTime(18000);
@@ -55,6 +59,24 @@ public class SpawnBoss implements CommandExecutor {
                     }
             } else {
                 Bukkit.getServer().broadcastMessage("I have awoken");
+                player.getWorld().createExplosion(event.getEntity().getLocation(), 5);
+                TimeUnit.MILLISECONDS.sleep(250);
+                player.getWorld().createExplosion(event.getEntity().getLocation(), 5);
+                TimeUnit.MILLISECONDS.sleep(250);
+                player.getWorld().createExplosion(event.getEntity().getLocation(), 5);
+                TimeUnit.MILLISECONDS.sleep(250);
+                player.getWorld().createExplosion(event.getEntity().getLocation(), 5);
+                TimeUnit.MILLISECONDS.sleep(250);
+                player.getWorld().createExplosion(event.getEntity().getLocation(), 5);
+                TimeUnit.MILLISECONDS.sleep(250);
+                player.getWorld().createExplosion(event.getEntity().getLocation(), 5);
+                TimeUnit.MILLISECONDS.sleep(250);
+                player.getWorld().createExplosion(event.getEntity().getLocation(), 5);
+                TimeUnit.MILLISECONDS.sleep(250);
+                player.getWorld().createExplosion(event.getEntity().getLocation(), 5);
+                TimeUnit.MILLISECONDS.sleep(250);
+
+
             }
         }
     }

@@ -25,6 +25,7 @@ import org.catplugin.eu.Commands.ToggleDiscordChat;
 import org.catplugin.eu.Items.Cannon;
 import org.catplugin.eu.Items.ChickenSword;
 import org.catplugin.eu.Items.NetheriteApple;
+import org.catplugin.eu.Mobs.BossFight;
 
 import javax.security.auth.login.LoginException;
 
@@ -120,6 +121,7 @@ public class Main extends JavaPlugin {
         HeartyHelmet.makeGuide();
 
         Bukkit.getServer().getPluginManager().registerEvents(new Listener(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new BossFight(), this);
 
         this.getCommand("givecustomitem").setExecutor(new GiveCustomItem());
         this.getCommand("craftguide").setExecutor(new CraftGuide());
