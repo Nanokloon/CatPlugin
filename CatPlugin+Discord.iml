@@ -37,15 +37,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../ArmorEquipEvent-1.7.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" name="spigot-1.16.5" level="project" />
     <orderEntry type="library" name="BuildTools" level="project" />
     <orderEntry type="library" name="JDA-4.2.0_168-sources" level="project" />

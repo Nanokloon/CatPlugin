@@ -12,12 +12,12 @@ import org.bukkit.entity.Player;
 public class SpawnBoss implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (s.equalsIgnoreCase("spawnboss") && commandSender instanceof Player) {
+
             Player player = (Player) commandSender;
             WitherSkele skele = new WitherSkele(player.getLocation(), player);
             WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
             world.addEntity(skele);
-        }
+
         return false;
     }
 }

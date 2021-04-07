@@ -108,6 +108,7 @@ public class Main extends JavaPlugin {
 
         ItemMeta backMeta = backArrow.getItemMeta();
         backMeta.setDisplayName("Back");
+        backMeta.setDisplayName("Back");
         backArrow.setItemMeta(backMeta);
 
         ChickenSword.makeGuide();

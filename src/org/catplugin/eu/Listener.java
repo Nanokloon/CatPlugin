@@ -2,21 +2,19 @@ package org.catplugin.eu;
 
 
 import net.dv8tion.jda.api.entities.MessageChannel;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import net.minecraft.server.v1_16_R3.WorldServer;
+import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Fireball;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
@@ -269,6 +267,16 @@ public class Listener implements org.bukkit.event.Listener {
         }
     }
 
+    @EventHandler
+    public void EntityDeathEvent(EntityDeathEvent event){
+        if(event.getEntityType().equals(EntityType.VILLAGER) && ChatColor.stripColor(event.getEntity().getCustomName()).equals( "Sewerslide Villager")){
+            Location l = event.getEntity().getLocation();
+            WorldServer worldServer = ((CraftWorld)event.getEntity().getWorld()).getHandle();
+            TNTPrimed tnt = (TNTPrimed) event.getEntity().getWorld().spawnEntity(l,EntityType.PRIMED_TNT);
+            tnt.setFuseTicks(20);
+        }
+    }
+
     public void upgradeNetherite(InventoryClickEvent e , ItemStack upgradeStack){
         ItemMeta meta = e.getClickedInventory().getItem(2).getItemMeta();
         Damageable damageable = (Damageable) meta;
@@ -285,5 +293,7 @@ public class Listener implements org.bukkit.event.Listener {
 
         e.getClickedInventory().getItem(3).setItemMeta((ItemMeta) nethDmg);
     }
+
+
 
 }

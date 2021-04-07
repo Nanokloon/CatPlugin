@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 
@@ -29,13 +30,10 @@ public class WitherSkele extends EntitySkeletonWither {
         this.setCustomName(new ChatComponentText(ChatColor.DARK_RED + "" + ChatColor.BOLD + "Wither Skeleton BOSS"));
         this.setCustomNameVisible(true);
 
-
-    }
-    @Override
-    protected void initPathfinder() {
         this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
-        this.goalSelector.a(1, new PathfinderGoalRandomStrollLand(this, 1.0D));
-        this.goalSelector.a(2, new PathfinderGoalRandomLookaround(this));
+       // this.goalSelector.a(2, new PathfinderGoalRandomStrollLand(this, 1.0D));
+        //this.goalSelector.a(3, new PathfinderGoalRandomLookaround(this));
+       // this.setGoalTarget(((CraftPlayer) player).getHandle());
 
     }
 }
