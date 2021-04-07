@@ -19,6 +19,9 @@ commands:
 
       description: can give cannon , chickensword
       usage: /<command>
+
+
+
       
   spawnboss:
       description: spawns the boss

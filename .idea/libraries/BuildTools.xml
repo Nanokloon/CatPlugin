@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="BuildTools">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Videos/BuildTools.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

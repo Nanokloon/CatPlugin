@@ -1,5 +1,6 @@
 package org.catplugin.eu;
 
+import org.catplugin.eu.Commands.SpawnBoss;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -60,6 +61,7 @@ public class Main extends JavaPlugin {
     public static Inventory heartyHelmetGuide;
     @Override
     public void onEnable() {
+
         getLogger().info("uw Moeder");
         getServer().getPluginManager().registerEvents(new Listener(), this);
 
