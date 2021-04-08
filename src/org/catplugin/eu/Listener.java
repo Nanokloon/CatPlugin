@@ -6,12 +6,15 @@ import net.minecraft.server.v1_16_R3.WorldServer;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.block.*;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -24,16 +27,22 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.BoundingBox;
+import org.bukkit.util.RayTraceResult;
+import org.bukkit.util.Vector;
+import org.catplugin.eu.Mobs.NetheriteDefender;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.catplugin.eu.Main.*;
 
@@ -275,6 +284,71 @@ public class Listener implements org.bukkit.event.Listener {
             TNTPrimed tnt = (TNTPrimed) event.getEntity().getWorld().spawnEntity(l,EntityType.PRIMED_TNT);
             tnt.setFuseTicks(20);
         }
+    }
+
+    @EventHandler
+    public void PlayerBlockBreakEvent(BlockBreakEvent e){
+        int randomNum = ThreadLocalRandom.current().nextInt(0, 11);
+
+        Player p = e.getPlayer();
+        Location l = e.getBlock().getLocation();
+        p.sendMessage(String.valueOf(randomNum));
+        if(randomNum == 5 && e.getBlock().getType().equals(Material.ANCIENT_DEBRIS)){
+            NetheriteDefender netheriteDefender = new NetheriteDefender(l);
+            netheriteDefender.setHealth(60.0F);
+
+            WorldServer worldServer = ((CraftWorld)p.getWorld()).getHandle();
+            worldServer.addEntity(netheriteDefender);
+            p.playSound(l,Sound.ITEM_TRIDENT_THUNDER,SoundCategory.HOSTILE,10,10);
+        }
+       /* l.add(-5,4,5);
+        l.getBlock().setType(Material.DIAMOND_BLOCK);
+        l.add(0,-4,0);
+        Location l0 = l;
+
+        l0.add(0,-1,0);
+        Location l1 = l;
+
+        Location l2 = l;
+        l2.add(0,1,0);
+        Block y0[][] = new Block[11][11];
+        Block y1[][] = new Block[11][11];
+        Block y2[][] = new Block[11][11];
+
+        for(int i = 0 ; i<11 ; i++){
+            for(int j = 0 ; j <11 ; j++){
+                y0[i][j]=l0.getBlock();
+                y1[i][j]=l1.getBlock();
+                y2[i][j]=l2.getBlock();
+                Bukkit.broadcastMessage(y0[i][j].getType() +"  " + y1[i][j].getType() + " "+ y2[i][j].getType() +" " + i + " " + j + " "  + l0.getBlockX()+ " "+ l0.getBlockZ());
+
+                l0.getBlock().setType(Material.BEDROCK);
+                l1.getBlock().setType(Material.BEDROCK);
+                l2.getBlock().setType(Material.BEDROCK);
+
+                l0.add(0.3,0,0);
+                l1.add(0.3,0,0);
+                l2.add(0.3,0,0);
+
+            }
+            l0.add(3.6,0,0.3);
+            l1.add(3.6,0,0.3);
+            l2.add(3.6,0,0.3);
+        }
+
+        for(int i = 0; i <11; i ++){
+            for(int j = 0 ; j < 11 ; j++){
+                if(!y0[i][j].getType().isAir() ){
+                    if(y1[i][j].getType().isAir() && y2[i][j].getType().isAir()) {
+                        NetheriteDefender netheriteDefender = new NetheriteDefender(y1[i][j].getLocation());
+                        netheriteDefender.setNoAI(true);
+                    }
+                }
+            }
+        }*/
+
+
+
     }
 
     public void upgradeNetherite(InventoryClickEvent e , ItemStack upgradeStack){
