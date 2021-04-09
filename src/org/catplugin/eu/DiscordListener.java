@@ -46,7 +46,7 @@ public class DiscordListener extends ListenerAdapter {
             channelA.sendMessage("[Msg from " + msg.getAuthor().getName() + "] " + message).queue();
             message = "";
         }
-        if (msg.getContentRaw().toLowerCase().startsWith("n!whitelist")) {
+     /*   if (msg.getContentRaw().toLowerCase().startsWith("n!whitelist")) {
             String[] args = msg.getContentRaw().split(" ");
             ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
             String command = "whitelist add ";
@@ -54,12 +54,12 @@ public class DiscordListener extends ListenerAdapter {
             channel.sendMessage("You're now whitelisted!").queue();
             Bukkit.reloadWhitelist();
 
-        }
+        }*/
         if (msg.getContentRaw().toLowerCase().startsWith("n!help")) {
             EmbedBuilder embedBuilder  = new EmbedBuilder().setTitle("Help");
             embedBuilder.setColor(Color.CYAN);
             embedBuilder.addField("n!sendmsg", "Send a message to the SMP",false );
-            embedBuilder.addField("n!whitelist <IGN>", "Adds you to the SMP whitelist if you're a member of LPK or HPK. Don't misspell your ign",false );
+            embedBuilder.addField("n!online", "Shows you who is online on the SMP",false );
             channel.sendMessage(embedBuilder.build()).queue();
         }
         if (msg.getContentRaw().toLowerCase().startsWith("n!online")) {

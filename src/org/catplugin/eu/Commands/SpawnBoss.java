@@ -28,7 +28,7 @@ public class SpawnBoss implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
         Player player = (Player) commandSender;
-        WitherSkele skele = new WitherSkele(player.getLocation(), player);
+        WitherSkele skele = new WitherSkele(player.getLocation());
         WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
         Main.worldServer= world;
         world.addEntity(skele);
