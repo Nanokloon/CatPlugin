@@ -28,8 +28,8 @@ public class WitherAttacker extends EntitySkeletonWither {
         this.setCustomName(new ChatComponentText(ChatColor.RED + "" + ChatColor.BOLD + "Wither Attacker"));
         this.setCustomNameVisible(true);
         this.setHealth(30.0F);
-        this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
-        this.goalSelector.a(1, new PathfinderGoalRandomStrollLand(this, 1.0D));
-        this.goalSelector.a(2, new PathfinderGoalRandomLookaround(this));
+        this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityHuman>(this, EntityHuman.class, true));
+        //this.goalSelector.a(1, new PathfinderGoalRandomStrollLand(this, 1.0D));
+        //this.goalSelector.a(2, new PathfinderGoalRandomLookaround(this));
     }
 }

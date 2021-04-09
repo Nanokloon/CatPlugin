@@ -31,7 +31,7 @@ public class WitherSkele extends EntitySkeletonWither {
             this.setGoalTarget((EntityLiving) ((CraftPlayer) player1).getHandle());
         }*/
 
-        this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+        this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityHuman>(this, EntityHuman.class, true));
        // this.goalSelector.a(2, new PathfinderGoalRandomStrollLand(this, 1.0D));
         //this.goalSelector.a(3, new PathfinderGoalRandomLookaround(this));
        // this.setGoalTarget(((CraftPlayer) player).getHandle());
