@@ -6,12 +6,12 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.WitherSkeleton;
 import org.bukkit.inventory.ItemStack;
 
-public class NetheriteDefender extends EntityPiglin {
-    public NetheriteDefender(Location l) {
-        super(EntityTypes.PIGLIN, ((CraftWorld)l.getWorld()).getHandle());
+public class WitherAttacker extends EntitySkeletonWither {
+    public WitherAttacker(Location l) {
+        super(EntityTypes.WITHER_SKELETON,((CraftWorld) l.getWorld()).getHandle());
         ItemStack netheriteAxe = new ItemStack(Material.NETHERITE_AXE, 1);
         ItemStack goldHelm = new ItemStack(Material.GOLDEN_HELMET, 1);
         ItemStack goldChestplate = new ItemStack(Material.GOLDEN_CHESTPLATE, 1);
@@ -25,7 +25,7 @@ public class NetheriteDefender extends EntityPiglin {
         this.setSlot(EnumItemSlot.CHEST, CraftItemStack.asNMSCopy(goldChestplate));
         this.setSlot(EnumItemSlot.LEGS, CraftItemStack.asNMSCopy(netheriteLeggings));
         this.setSlot(EnumItemSlot.FEET, CraftItemStack.asNMSCopy(netheriteBoots));
-        this.setCustomName(new ChatComponentText(ChatColor.RED + "" + ChatColor.BOLD + "Netherite Defender"));
+        this.setCustomName(new ChatComponentText(ChatColor.RED + "" + ChatColor.BOLD + "Wither Attacker"));
         this.setCustomNameVisible(true);
         this.setHealth(30.0F);
         this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));

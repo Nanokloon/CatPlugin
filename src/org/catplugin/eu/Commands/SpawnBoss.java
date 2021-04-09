@@ -7,6 +7,7 @@ import org.bukkit.entity.Wither;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.catplugin.eu.Main;
 import org.catplugin.eu.Mobs.WitherSkele;
 import net.minecraft.server.v1_16_R3.WorldServer;
 import org.bukkit.Bukkit;
@@ -29,7 +30,9 @@ public class SpawnBoss implements CommandExecutor {
         Player player = (Player) commandSender;
         WitherSkele skele = new WitherSkele(player.getLocation(), player);
         WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
+        Main.worldServer= world;
         world.addEntity(skele);
+
 
         return false;
     }

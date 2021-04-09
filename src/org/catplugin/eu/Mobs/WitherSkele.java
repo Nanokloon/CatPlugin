@@ -1,16 +1,12 @@
 package org.catplugin.eu.Mobs;
 
 import net.minecraft.server.v1_16_R3.*;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
-
-import java.util.List;
 
 public class WitherSkele extends EntitySkeletonWither {
     public WitherSkele(Location loc, Player player) {
@@ -31,9 +27,9 @@ public class WitherSkele extends EntitySkeletonWither {
         this.setSlot(EnumItemSlot.CHEST, CraftItemStack.asNMSCopy(chestplate));
         this.setSlot(EnumItemSlot.LEGS, CraftItemStack.asNMSCopy(leggings));
         this.setSlot(EnumItemSlot.FEET, CraftItemStack.asNMSCopy(boots));
-        for (Player player1 : Bukkit.getOnlinePlayers()) {
+       /* for (Player player1 : Bukkit.getOnlinePlayers()) {
             this.setGoalTarget((EntityLiving) ((CraftPlayer) player1).getHandle());
-        }
+        }*/
 
         this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
        // this.goalSelector.a(2, new PathfinderGoalRandomStrollLand(this, 1.0D));

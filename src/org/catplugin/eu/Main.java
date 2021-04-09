@@ -1,5 +1,6 @@
 package org.catplugin.eu;
 
+import net.minecraft.server.v1_16_R3.WorldServer;
 import org.catplugin.eu.Commands.SpawnBoss;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -60,6 +61,7 @@ public class Main extends JavaPlugin {
     public static Inventory heartyLegsGuide;
     public static Inventory heartyChestplateGuide;
     public static Inventory heartyHelmetGuide;
+    public static WorldServer worldServer ;
     @Override
     public void onEnable() {
 

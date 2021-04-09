@@ -292,7 +292,7 @@ public class Listener implements org.bukkit.event.Listener {
 
         Player p = e.getPlayer();
         Location l = e.getBlock().getLocation();
-        p.sendMessage(String.valueOf(randomNum));
+        //p.sendMessage(String.valueOf(randomNum));
         if(randomNum == 5 && e.getBlock().getType().equals(Material.ANCIENT_DEBRIS)){
             NetheriteDefender netheriteDefender = new NetheriteDefender(l);
             netheriteDefender.setHealth(60.0F);
