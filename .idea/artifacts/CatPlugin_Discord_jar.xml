@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="CatPlugin+Discord:jar">
+    <output-path>$USER_HOME$/CatServer/Plugins</output-path>
+    <root id="archive" name="CatPlugin+Discord.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../../CatServer/Plugins/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="CatPlugin+Discord" />
+      <element id="extracted-dir" path="$USER_HOME$/Videos/BuildTools.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Videos/spigot-1.16.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/16.0.2/annotations-16.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Videos/JDA-4.2.0_168.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

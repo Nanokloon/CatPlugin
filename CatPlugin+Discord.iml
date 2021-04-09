@@ -38,8 +38,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="spigot-1.16.5" level="project" />
-    <orderEntry type="library" name="BuildTools" level="project" />
-    <orderEntry type="library" name="JDA-4.2.0_168-sources" level="project" />
-    <orderEntry type="library" name="JDA-4.2.0_168" level="project" />
+    <orderEntry type="library" name="org.jetbrains:annotations:16.0.2" level="project" />
+    <orderEntry type="library" name="JDA-4.2.0_168-withDependencies (1)" level="project" />
+    <orderEntry type="library" name="BuildTools (1)" level="project" />
   </component>
 </module>

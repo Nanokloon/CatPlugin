@@ -9,7 +9,7 @@ import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 
 public class WitherSkele extends EntitySkeletonWither {
-    public WitherSkele(Location loc, Player player) {
+    public WitherSkele(Location loc) {
         super(EntityTypes.WITHER_SKELETON, ((CraftWorld) loc.getWorld()).getHandle());
         this.setCustomName(new ChatComponentText(ChatColor.DARK_RED + "" + ChatColor.BOLD + "Wither Skeleton BOSS"));
         this.setCustomNameVisible(true);
