@@ -20,13 +20,11 @@ commands:
       description: can give cannon , chickensword
       usage: /<command>
 
-
-
-      
   spawnboss:
       description: spawns the boss
       usage: /<command>
-      
+      permission: <plugin name>.basic
+      permission-message:
 
   testcmd:
     description: testentity
