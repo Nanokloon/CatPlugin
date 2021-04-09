@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="CatPlugin">
-    <output-path>$PROJECT_DIR$/../CoderDojo/1.16.5/plugins</output-path>
-    <root id="archive" name="CatPlugin.jar">
-      <element id="module-output" name="CatPlugin+Discord" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../JDA-4.2.0_168-withDependencies.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>

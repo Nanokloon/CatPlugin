@@ -121,7 +121,7 @@ public class Main extends JavaPlugin {
         HeartyHelmet.makeGuide();
 
         Bukkit.getServer().getPluginManager().registerEvents(new Listener(), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new BossFight(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new BossFight(this), this);
 
         this.getCommand("givecustomitem").setExecutor(new GiveCustomItem());
         this.getCommand("craftguide").setExecutor(new CraftGuide());

@@ -250,31 +250,6 @@ public class Listener implements org.bukkit.event.Listener {
         }
     }
 
-    @EventHandler
-    public void PlayerJoinEvent(PlayerJoinEvent event) throws InterruptedException {
-        String playerName = event.getPlayer().getName();
-        MessageChannel channel = Main.jda.awaitReady().getGuildById("712092358711181325").getTextChannelById("812370653223190568");
-        if(owo==false) {
-            channel.sendMessage(playerName + " has joined the SMP.").queue();
-            owo=true;
-        }
-        else{
-            owo=false;
-        }
-    }
-
-    @EventHandler
-    public void PlayerLeaveEvent(PlayerQuitEvent event) throws InterruptedException {
-        String playerName = event.getPlayer().getName();
-        MessageChannel channel = Main.jda.awaitReady().getGuildById("712092358711181325").getTextChannelById("812370653223190568");
-        if (uwu == false) {
-            channel.sendMessage(playerName + " has left the SMP.").queue();
-            uwu=true;
-        }
-        else{
-            uwu=false;
-        }
-    }
 
     @EventHandler
     public void EntityDeathEvent(EntityDeathEvent event){
