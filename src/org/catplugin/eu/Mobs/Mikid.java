@@ -9,78 +9,88 @@ import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.catplugin.eu.Main;
 
 import java.util.*;
 
 public class Mikid {
     private static List<EntityPlayer> Mikid = new ArrayList<EntityPlayer>();
     private static Map<EntityPlayer, List<Pair<EnumItemSlot, ItemStack>>> equipmentMap = new HashMap<>();
-    private org.catplugin.eu.Main plugin;
-    private double prevx = 0;
-    private double prevy = 0;
-    private double prevz = 0;
-    public UUID id;
-    private float currentHealth;
+    private static org.catplugin.eu.Main plugin;
+    private static double prevx = 0;
+    private static double prevy = 0;
+    private static double prevz = 0;
+    public static UUID id;
+    private static float currentHealth;
 
-    public void spawn(Player player) {
+    public static void spawn(Player player) {
 
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
         GameProfile gameProfile = new GameProfile(UUID.fromString("42b661f7-137d-4188-8ad4-0dbf5ee5c810"), ChatColor.DARK_RED + "" + ChatColor.BOLD + "MiKid2015");
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile, new PlayerInteractManager(world));
-        npc.setLocation(player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch());
-        addMikidPacket(npc);
-        Mikid.add(npc);
-        Location loc = player.getLocation();
-        MikidController mob = new MikidController(loc);
-        world.addEntity(mob);
-        id = mob.getUniqueID();
-        prevx  = mob.locX();
-        prevy  = mob.locY();
-        prevz  = mob.locZ();
-        currentHealth = mob.getHealth();
-        new BukkitRunnable() {
-            public void run() {
-                mob.setSilent(true);
-                mob.setInvisible(true);
+        for (Entity e : Bukkit.getServer().getWorld("world").getLivingEntities()) {
+            if (ChatColor.stripColor(e.getName()).equals("Wither Skeleton BOSS")) {
+                npc.setPosition(e.getLocation().getX(), e.getLocation().getZ(), e.getLocation().getY());
+            } else {
+                npc.setPosition(Main.x, Main.y, Main.z);
 
             }
-        }.runTaskLater(plugin, 2);
-        new BukkitRunnable() {
-
-            public void run() {
-                update(npc, mob);
-
-                double x = mob.locX();
-                double y = mob.locY();
-                double z = mob.locZ();
-
-                if (x != prevx || y != prevy || z != prevz) {
-                    double getx = x - prevx;
-                    double gety = y - prevy;
-                    double getz = z - prevz;
-
-                    npcMove(npc, getx, gety, getz);
-
-                    prevx = x;
-                    prevy = y;
-                    prevz = z;
-                }
-                if (mob.getHealth() < currentHealth) {
-                    npcTakeDamage(npc);
-                    currentHealth = mob.getHealth();
+            addMikidPacket(npc);
+            Mikid.add(npc);
+            Location loc = player.getLocation();
+            MikidController mob = new MikidController(loc);
+            world.addEntity(mob);
+            id = mob.getUniqueID();
+            prevx = mob.locX();
+            prevy = mob.locY();
+            prevz = mob.locZ();
+            currentHealth = mob.getHealth();
+            new BukkitRunnable() {
+                public void run() {
+                    mob.setSilent(true);
+                    mob.setInvisible(true);
 
                 }
-                if (mob.dead == true) {
-                    removeMikidPacket(npc);
-                    Mikid.remove(npc);
-                    cancel();
+            }.runTaskLater(plugin, 2);
+            new BukkitRunnable() {
+
+                public void run() {
+                    update(npc, mob);
+
+                    double x = mob.locX();
+                    double y = mob.locY();
+                    double z = mob.locZ();
+
+                    if (x != prevx || y != prevy || z != prevz) {
+                        double getx = x - prevx;
+                        double gety = y - prevy;
+                        double getz = z - prevz;
+
+                        npcMove(npc, getx, gety, getz);
+
+                        prevx = x;
+                        prevy = y;
+                        prevz = z;
+                    }
+                    if (mob.getHealth() < currentHealth) {
+                        npcTakeDamage(npc);
+                        currentHealth = mob.getHealth();
+
+                    }
+                    if (mob.dead == true) {
+                        removeMikidPacket(npc);
+                        Mikid.remove(npc);
+                        cancel();
+                    }
                 }
-            }
-        }.runTaskTimer(plugin, 0, 0);
-    }
+            }.runTaskTimer(plugin, 0, 0);
+        }
+        }
+
 
 
 
@@ -93,7 +103,7 @@ public class Mikid {
 
 
 
-    public void addMikidPacket(EntityPlayer npc) {
+    public static void addMikidPacket(EntityPlayer npc) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
             connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc));
@@ -102,7 +112,7 @@ public class Mikid {
 
         }
     }
-    public void removeMikidPacket(EntityPlayer npc) {
+    public static void removeMikidPacket(EntityPlayer npc) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
             DataWatcher watcher = npc.getDataWatcher();
@@ -125,7 +135,7 @@ public class Mikid {
 
     }
 
-    public void update(EntityPlayer npc, MikidController mob) {
+    public static void update(EntityPlayer npc, MikidController mob) {
         for (Player player : Bukkit.getOnlinePlayers()) {
 
             PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
@@ -136,7 +146,7 @@ public class Mikid {
         }
     }
 
-    public void npcMove(EntityPlayer npc, double x, double y, double z) {
+    public static void npcMove(EntityPlayer npc, double x, double y, double z) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
             connection.sendPacket(new PacketPlayOutEntity.PacketPlayOutRelEntityMove(npc.getId(), (short) (x * 4096), (short) (y * 4096), (short) (z * 4096), true));
@@ -145,7 +155,7 @@ public class Mikid {
         }
     }
 
-    public void npcTakeDamage(EntityPlayer npc) {
+    public static void npcTakeDamage(EntityPlayer npc) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
             connection.sendPacket(new PacketPlayOutAnimation(npc, 1));
