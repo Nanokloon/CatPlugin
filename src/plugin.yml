@@ -31,3 +31,9 @@ commands:
     usage: /<command>
     permission: <plugin name>.basic
     permission-message:
+    
+  getbosslocation:
+
+    description: gives boss location
+    usage: /<command>
+
