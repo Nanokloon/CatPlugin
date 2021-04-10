@@ -34,9 +34,9 @@ public class Mikid {
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile, new PlayerInteractManager(world));
         for (Entity e : Bukkit.getServer().getWorld("world").getLivingEntities()) {
             if (ChatColor.stripColor(e.getName()).equals("Wither Skeleton BOSS")) {
-                npc.setPosition(e.getLocation().getX(), e.getLocation().getZ(), e.getLocation().getY());
+                npc.setLocation(e.getLocation().getX(), e.getLocation().getZ(), e.getLocation().getY(), player.getLocation().getYaw(), player.getLocation().getPitch());
             } else {
-                npc.setPosition(Main.x, Main.y, Main.z);
+                npc.setLocation(Main.x, Main.y, Main.z, player.getLocation().getYaw(), player.getLocation().getPitch());
 
             }
             addMikidPacket(npc);
