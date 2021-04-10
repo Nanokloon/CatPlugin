@@ -22,7 +22,7 @@ public class BossFight implements Listener {
         this.main = main;
     }
 
-
+    private static Plugin plugin= Bukkit.getPluginManager().getPlugin("CatPlugin");
     @EventHandler
     public void onBossSpawn(EntitySpawnEvent e) {
         if (ChatColor.stripColor(e.getEntity().getName()).equals("Wither Skeleton BOSS")) {

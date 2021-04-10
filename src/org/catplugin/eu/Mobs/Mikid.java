@@ -26,6 +26,7 @@ public class Mikid {
     private static double prevz = 0;
     public static UUID id;
     private static float currentHealth;
+    public Mikid(Plugin plugin) {this.plugin = plugin; }
 
     public static void spawn(Player player) {
 
