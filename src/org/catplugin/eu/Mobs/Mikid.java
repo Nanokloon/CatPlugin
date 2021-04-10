@@ -16,10 +16,12 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.catplugin.eu.Main;
 
 import java.util.*;
+private static 
+
+public Mikid(Main plugin) {this.plugin = plugin; }
 
 public class Mikid {
     private static List<EntityPlayer> Mikid = new ArrayList<EntityPlayer>();
-    private static Map<EntityPlayer, List<Pair<EnumItemSlot, ItemStack>>> equipmentMap = new HashMap<>();
     private static org.catplugin.eu.Main plugin;
     private static double prevx = 0;
     private static double prevy = 0;
