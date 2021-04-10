@@ -1,7 +1,9 @@
 package org.catplugin.eu;
 
 import net.minecraft.server.v1_16_R3.WorldServer;
-import org.catplugin.eu.Commands.SpawnBoss;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.catplugin.eu.Commands.*;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -21,7 +23,6 @@ import org.catplugin.eu.Armor.NetheriteHearty.NetheriteHeartyHelmet;
 import org.catplugin.eu.Armor.NetheriteHearty.NetheriteHeartyLeggings;
 import org.catplugin.eu.Commands.GiveCustomItem;
 import org.catplugin.eu.Commands.TabComplete;
-import org.catplugin.eu.Commands.TestCmd;
 import org.catplugin.eu.Commands.ToggleDiscordChat;
 import org.catplugin.eu.Items.Cannon;
 import org.catplugin.eu.Items.ChickenSword;
@@ -29,8 +30,17 @@ import org.catplugin.eu.Items.NetheriteApple;
 import org.catplugin.eu.Mobs.BossFight;
 
 import javax.security.auth.login.LoginException;
+import java.util.Random;
 
 public class Main extends JavaPlugin {
+    static Player player;
+    static Random ra = new Random();
+    public static int x = ra.nextInt(1000);
+    public static int t = 150
+    public static int z = ra.nextInt(1000);
+    static Location rloc = new Location(player.getWorld(), x, t, z);
+    public static int y = rloc.getWorld().getHighestBlockYAt(rloc);
+
 
     public static ItemStack chickenSword = new ItemStack(Material.NETHERITE_SWORD, 1);
     public static ItemStack ballSword = new ItemStack(Material.NETHERITE_HOE, 1);
@@ -61,7 +71,7 @@ public class Main extends JavaPlugin {
     public static Inventory heartyLegsGuide;
     public static Inventory heartyChestplateGuide;
     public static Inventory heartyHelmetGuide;
-    public static WorldServer worldServer ;
+    public static WorldServer worldServer;
     @Override
     public void onEnable() {
 
@@ -132,7 +142,7 @@ public class Main extends JavaPlugin {
         this.getCommand("togglediscord").setExecutor(new ToggleDiscordChat());
         this.getCommand("testcmd").setExecutor(new TestCmd());
         this.getCommand("spawnboss").setExecutor(new SpawnBoss());
-        this.getCommand("getbosslocation").setExecutor(new getLocation());
+        this.getCommand("getlocation").setExecutor(new getLocation());
     }
 
     @Override
