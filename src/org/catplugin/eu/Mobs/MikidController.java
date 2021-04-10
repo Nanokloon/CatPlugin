@@ -16,7 +16,7 @@ public class MikidController extends EntityZombie {
         this.setCustomName(new ChatComponentText(ChatColor.DARK_RED + "" + ChatColor.BOLD + "Wither Skeleton BOSS"));
         this.setCustomNameVisible(true);
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
-        this.setHealth(1000.0F);
+        this.setHealth(690.0F);
         this.setAggressive(true);
         org.bukkit.inventory.ItemStack netheriteSword = new org.bukkit.inventory.ItemStack(Material.NETHERITE_SWORD, 1);
         this.setSlot(EnumItemSlot.MAINHAND, CraftItemStack.asNMSCopy(netheriteSword));
@@ -32,5 +32,5 @@ public class MikidController extends EntityZombie {
     @Override
     protected void initPathfinder() {
         this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
-    }
+}
 }
