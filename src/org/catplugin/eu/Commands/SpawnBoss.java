@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Wither;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.catplugin.eu.Main;
@@ -19,19 +20,22 @@ import org.bukkit.entity.Player;
 
 import java.sql.Time;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class SpawnBoss implements CommandExecutor {
+public class SpawnBoss implements CommandExecutor, Listener {
     int number = 0;
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-
-        Player player = (Player) commandSender;
-        WitherSkele skele = new WitherSkele(player.getLocation());
-        WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
-        Main.worldServer= world;
-        world.addEntity(skele);
+        if (s.equalsIgnoreCase("spawnboss") && commandSender.isOp()) {
+            Player player = (Player) commandSender;
+            WitherSkele skele = new WitherSkele(player.getLocation());
+            WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
+            Main.worldServer = world;
+            world.addEntity(skele);
+            skele.setPosition(Main.x, Main.y, Main.z);
+        }
 
 
         return false;
@@ -79,8 +83,17 @@ public class SpawnBoss implements CommandExecutor {
                 player.getWorld().createExplosion(event.getEntity().getLocation(), 5);
                 TimeUnit.MILLISECONDS.sleep(250);
 
+                WitherSkele skele = new WitherSkele(player.getLocation());
+                WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
+                Main.worldServer = world;
+                world.addEntity(skele);
+                skele.setPosition(event.getEntity().getLocation().getX(), event.getEntity().getLocation().getY(), event.getEntity().getLocation().getZ());
+                ((LivingEntity) skele).addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier("generic.maxHealth", 420F, AttributeModifier.Operation.ADD_NUMBER));
+                number = 0;
+
 
             }
         }
     }
 }
+
