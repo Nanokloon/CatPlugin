@@ -32,7 +32,7 @@ commands:
     permission: <plugin name>.basic
     permission-message:
     
-  getbosslocation:
+  getlocation:
 
     description: gives boss location
     usage: /<command>
