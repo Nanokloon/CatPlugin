@@ -47,7 +47,7 @@ public class BossFight implements Listener {
         }
     }
 
-
+    @EventHandler
     public void runAgain(EntitySpawnEvent e){
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Bukkit.getServer().getPluginManager().getPlugin("CatPlugin"), new Runnable() {
             @Override
@@ -62,4 +62,23 @@ public class BossFight implements Listener {
             }
         }, 100);
     }
-}
+    @EventHandler
+    public void onDamage (EntityDamageByEntityEvent e){
+        Player player = (Player) e.getDamager();
+           if (e.getEntity() instanceof WitherSkele) {
+               if (((WitherSkele) e.getEntity()).getMaxHealth() / 2 > ((WitherSkele) e.getEntity()).getHealth()) {
+                   Mikid m = new Mikid();
+                   m.spawn(player);
+                   Bukkit.getServer().broadcastMessage("MiKid2015 has spawned at" + main.x + ", " + main.y + ", " + main.y);
+                }
+
+                Random rnd = new Random();
+                if (rnd.nextInt(100) <= 25) {
+                    NetheriteDefender nether = new NetheriteDefender(e.getEntity().getLocation());
+                    WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
+                    world.addEntity(nether);
+                }
+            }
+        }
+    }
+
