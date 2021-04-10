@@ -20,6 +20,7 @@ public class MikidController extends EntityZombie {
         this.setAggressive(true);
         org.bukkit.inventory.ItemStack netheriteSword = new org.bukkit.inventory.ItemStack(Material.NETHERITE_SWORD, 1);
         this.setSlot(EnumItemSlot.MAINHAND, CraftItemStack.asNMSCopy(netheriteSword));
+        this.setSlot(EnumItemSlot.HEAD, CraftItemStack.asNMSCopy(head));
 
         for (Player player1 : Bukkit.getOnlinePlayers()) {
                 this.setGoalTarget((EntityLiving) ((CraftPlayer) player1).getHandle());
