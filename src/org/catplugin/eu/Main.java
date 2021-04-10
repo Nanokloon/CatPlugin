@@ -123,7 +123,8 @@ public class Main extends JavaPlugin {
         HeartyHelmet.makeGuide();
 
         Bukkit.getServer().getPluginManager().registerEvents(new Listener(), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new BossFight(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new BossFight(this), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new SpawnBoss(), this);
 
         this.getCommand("givecustomitem").setExecutor(new GiveCustomItem());
         this.getCommand("craftguide").setExecutor(new CraftGuide());
@@ -131,6 +132,7 @@ public class Main extends JavaPlugin {
         this.getCommand("togglediscord").setExecutor(new ToggleDiscordChat());
         this.getCommand("testcmd").setExecutor(new TestCmd());
         this.getCommand("spawnboss").setExecutor(new SpawnBoss());
+        this.getCommand("getbosslocation").setExecutor(new getLocation());
     }
 
     @Override
