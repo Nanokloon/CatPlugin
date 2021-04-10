@@ -1,0 +1,32 @@
+package org.catplugin.eu.Commands;
+
+import net.minecraft.server.v1_16_R3.WorldServer;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.catplugin.eu.Main;
+import org.catplugin.eu.Mobs.WitherSkele;
+
+public class getLocation implements CommandExecutor {
+    Main main;
+
+    @Override
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        if (s.equalsIgnoreCase("getbosslocation")) {
+            Player player = (Player) commandSender;
+            for (Entity e : Bukkit.getServer().getWorld("world").getLivingEntities()) {
+                if (e.getCustomName().contains("BOSS") || e.getCustomName().contains("Wither") || e.getCustomName().contains("Skeleton")) {
+                    player.sendMessage(ChatColor.RED + "The boss or mikid spawn location is" + main.x + ", " + main.y + ", " + main.x);
+                } else {
+                    player.sendMessage("the boss has not spawned yet.");
+                }
+            }
+        }
+                return false;
+    }
+}
