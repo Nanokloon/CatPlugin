@@ -1,7 +1,7 @@
 package org.catplugin.eu;
 
-import net.minecraft.server.v1_16_R3.WorldServer;
-import org.bukkit.Location;
+
+import net.minecraft.server.level.WorldServer;
 import org.bukkit.entity.Player;
 import org.catplugin.eu.Commands.*;
 import net.dv8tion.jda.api.JDA;
@@ -27,7 +27,6 @@ import org.catplugin.eu.Commands.ToggleDiscordChat;
 import org.catplugin.eu.Items.Cannon;
 import org.catplugin.eu.Items.ChickenSword;
 import org.catplugin.eu.Items.NetheriteApple;
-import org.catplugin.eu.Mobs.BossFight;
 
 import javax.security.auth.login.LoginException;
 import java.util.Random;
@@ -36,10 +35,10 @@ public class Main extends JavaPlugin {
     static Player player;
     static Random ra = new Random();
     public static int x = ra.nextInt(1000);
-    public static int t = 150
+    public static int t = 150;
     public static int z = ra.nextInt(1000);
-    static Location rloc = new Location(player.getWorld(), x, t, z);
-    public static int y = rloc.getWorld().getHighestBlockYAt(rloc);
+    //static Location rloc = new Location(player.getWorld(), x, t, z);
+    //public static int y = rloc.getWorld().getHighestBlockYAt(rloc);
 
 
     public static ItemStack chickenSword = new ItemStack(Material.NETHERITE_SWORD, 1);
@@ -60,7 +59,7 @@ public class Main extends JavaPlugin {
     public static ItemStack netheriteHeartyBoots = new ItemStack(Material.NETHERITE_BOOTS,1);
 
     public static final String TOKEN = GitignoredFile.botToken();
-    public static JDA jda = null;
+  //  public static JDA jda = null;
     public static boolean run = false;
     public static boolean owo = false;
     public static boolean uwu = false;
@@ -78,16 +77,16 @@ public class Main extends JavaPlugin {
         getLogger().info("uw Moeder");
         getServer().getPluginManager().registerEvents(new Listener(), this);
 
-        JDABuilder builder = JDABuilder.createDefault(TOKEN);
-        try {
-            jda = builder.build();
-        } catch (LoginException e) {
-            e.printStackTrace();
-        }
+        //JDABuilder builder = JDABuilder.createDefault(TOKEN);
+       // try {
+          //  jda = builder.build();
+      //  } catch (LoginException e) {
+           // e.printStackTrace();
+      //  }
 
         // getLogger().info(String.valueOf(jda.getGuilds().size()));
-        jda.addEventListener(new DiscordListener());
-        builder.setActivity(Activity.playing("the SMP"));
+       // jda.addEventListener(new DiscordListener());
+       // builder.setActivity(Activity.playing("the SMP"));
 
         ChickenSword.init();
         Cannon.init();
@@ -133,7 +132,7 @@ public class Main extends JavaPlugin {
         HeartyHelmet.makeGuide();
 
         Bukkit.getServer().getPluginManager().registerEvents(new Listener(), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new BossFight(this), this);
+       // Bukkit.getServer().getPluginManager().registerEvents(new BossFight(this), this);
         Bukkit.getServer().getPluginManager().registerEvents(new SpawnBoss(), this);
 
         this.getCommand("givecustomitem").setExecutor(new GiveCustomItem());
@@ -142,16 +141,15 @@ public class Main extends JavaPlugin {
         this.getCommand("togglediscord").setExecutor(new ToggleDiscordChat());
         this.getCommand("testcmd").setExecutor(new TestCmd());
         this.getCommand("spawnboss").setExecutor(new SpawnBoss());
-        this.getCommand("getlocation").setExecutor(new getLocation());
     }
 
     @Override
     public void onDisable() {
-        try {
-            jda.awaitReady().shutdown();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+     //   try {
+       //     jda.awaitReady().shutdown();
+     //   } catch (InterruptedException e) {
+          //  e.printStackTrace();
+     //   //}
     }
 
 }

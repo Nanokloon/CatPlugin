@@ -1,12 +1,14 @@
 package org.catplugin.eu.Mobs;
 
-import net.minecraft.server.v1_16_R3.WorldServer;
-import org.bukkit.*;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.entity.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.plugin.Plugin;
@@ -16,9 +18,9 @@ import java.util.List;
 import java.util.Random;
 
 public class BossFight implements Listener {
-    private final Main main;
-    public static WorldServer worldServer;
-    public BossFight(Main main) {
+    //private final Main main;
+    //public static WorldServer worldServer;
+  /*  public BossFight(Main main) {
         this.main = main;
     }
 
@@ -32,7 +34,7 @@ public class BossFight implements Listener {
                     if (!e.getEntity().isDead()) {
                         Location loc = e.getLocation();
                         NetheriteDefender defender = new NetheriteDefender(loc);
-                        worldServer.addEntity(defender);
+                      //  worldServer.addEntity(defender);
 
 
                     }
@@ -69,9 +71,9 @@ public class BossFight implements Listener {
                 Random rnd = new Random();
                 if (rnd.nextInt(100) <= 25) {
                     NetheriteDefender nether = new NetheriteDefender(e.getEntity().getLocation());
-                    WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
-                    world.addEntity(nether);
+                    //WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
+                   // world.addEntity(nether);
                 }
             }
-        }
+        }*/
     }

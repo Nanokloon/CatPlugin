@@ -25,9 +25,7 @@ public class DiscordListener extends ListenerAdapter {
         MessageChannel channel = event.getChannel();
         if (msg.getContentRaw().equals("n!ping")) {
             long time = System.currentTimeMillis();
-            channel.sendMessage("Pong!").queue(response -> {
-                response.editMessageFormat("Pong: %d ms", System.currentTimeMillis() - time).queue();
-            });
+            channel.sendMessage("Pong!").queue(response -> response.editMessageFormat("Pong: %d ms", System.currentTimeMillis() - time).queue());
         }
         if (msg.getContentRaw().toLowerCase().startsWith("n!sendmsg")) {
             String[] args = msg.getContentRaw().split(" ");
@@ -38,11 +36,11 @@ public class DiscordListener extends ListenerAdapter {
             }
             Bukkit.broadcastMessage(ChatColor.GOLD + "[Msg from " + msg.getAuthor().getName() + "] " + ChatColor.WHITE + message);
             MessageChannel channelA = null;
-            try {
-                channelA = Main.jda.awaitReady().getGuildById("712092358711181325").getTextChannelById("812370653223190568");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+           // try {
+           //     channelA = Main.jda.awaitReady().getGuildById("712092358711181325").getTextChannelById("812370653223190568");
+          //  } catch (InterruptedException e) {
+            //    e.printStackTrace();
+          //  }
             channelA.sendMessage("[Msg from " + msg.getAuthor().getName() + "] " + message).queue();
             message = "";
         }

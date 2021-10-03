@@ -1,25 +1,23 @@
 package org.catplugin.eu.Mobs;
 
-import net.minecraft.server.v1_16_R3.*;
-import org.bukkit.ChatColor;
+import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.monster.piglin.EntityPiglin;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 
-public class NetheriteDefender extends EntityPiglin {
+public class NetheriteDefender {//extends EntityPiglin {
+
     public NetheriteDefender(Location l) {
-        super(EntityTypes.PIGLIN, ((CraftWorld)l.getWorld()).getHandle());
-        ItemStack netheriteAxe = new ItemStack(Material.NETHERITE_AXE, 1);
+       // super(EntityTypes.ao, ((CraftWorld)l.getWorld()).getHandle());
+        /*ItemStack netheriteAxe = new ItemStack(Material.NETHERITE_AXE, 1);
         ItemStack goldHelm = new ItemStack(Material.GOLDEN_HELMET, 1);
         ItemStack goldChestplate = new ItemStack(Material.GOLDEN_CHESTPLATE, 1);
         ItemStack netheriteLeggings = new ItemStack(Material.NETHERITE_LEGGINGS, 1);
         ItemStack netheriteBoots = new ItemStack(Material.NETHERITE_BOOTS, 1);
-        net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(netheriteAxe);
+
+        net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(netheriteAxe);
         this.setPosition(l.getX(), l.getY(), l.getZ());
-        this.setSlot(EnumItemSlot.MAINHAND, nmsItem);
+        this.setSlot(EnumItemSlot, nmsItem);
         //this.setSlot(EnumItemSlot.OFFHAND, nmsItem);
         this.setSlot(EnumItemSlot.HEAD, CraftItemStack.asNMSCopy(goldHelm));
         this.setSlot(EnumItemSlot.CHEST, CraftItemStack.asNMSCopy(goldChestplate));
@@ -30,6 +28,6 @@ public class NetheriteDefender extends EntityPiglin {
         this.setHealth(30.0F);
         this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityHuman>(this, EntityHuman.class, true));
         this.goalSelector.a(1, new PathfinderGoalRandomStrollLand(this, 1.0D));
-        this.goalSelector.a(2, new PathfinderGoalRandomLookaround(this));
+        this.getG.a(2, new PathfinderGoalRandomLookaround(this));*/
     }
 }

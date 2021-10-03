@@ -1,27 +1,23 @@
 package org.catplugin.eu.Mobs;
 
 import com.mojang.authlib.GameProfile;
-import javafx.util.Pair;
-import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.catplugin.eu.Main;
 
-import java.util.*;
-private static 
+import java.util.List;
+import java.util.UUID;
 
-public Mikid(Main plugin) {this.plugin = plugin; }
+//private static
+
+//public Mikid(Main plugin) {this.plugin = plugin; }
 
 public class Mikid {
-    private static List<EntityPlayer> Mikid = new ArrayList<EntityPlayer>();
+   /* private static List<EntityPlayer> Mikid = new ArrayList<EntityPlayer>();
     private static org.catplugin.eu.Main plugin;
     private static double prevx = 0;
     private static double prevy = 0;
@@ -32,30 +28,30 @@ public class Mikid {
 
     public static void spawn(Player player) {
 
-        MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
-        WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
+      //  MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
+       // WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
         GameProfile gameProfile = new GameProfile(UUID.fromString("42b661f7-137d-4188-8ad4-0dbf5ee5c810"), ChatColor.DARK_RED + "" + ChatColor.BOLD + "MiKid2015");
-        EntityPlayer npc = new EntityPlayer(server, world, gameProfile, new PlayerInteractManager(world));
+      //  EntityPlayer npc = new EntityPlayer(server, world, gameProfile, new PlayerInteractManager(world));
         for (Entity e : Bukkit.getServer().getWorld("world").getLivingEntities()) {
             if (ChatColor.stripColor(e.getName()).equals("Wither Skeleton BOSS")) {
-                npc.setLocation(e.getLocation().getX(), e.getLocation().getZ(), e.getLocation().getY(), player.getLocation().getYaw(), player.getLocation().getPitch());
+             //   npc.setLocation(e.getLocation().getX(), e.getLocation().getZ(), e.getLocation().getY(), player.getLocation().getYaw(), player.getLocation().getPitch());
             } else {
-                npc.setLocation(Main.x, Main.y, Main.z, player.getLocation().getYaw(), player.getLocation().getPitch());
+             //   npc.setLocation(Main.x, Main.y, Main.z, player.getLocation().getYaw(), player.getLocation().getPitch());
 
             }
-            addMikidPacket(npc);
-            Mikid.add(npc);
+           // addMikidPacket(npc);
+          //  Mikid.add(npc);
             Location loc = player.getLocation();
-            MikidController mob = new MikidController(loc);
-            world.addEntity(mob);
-            id = mob.getUniqueID();
-            prevx = mob.locX();
-            prevy = mob.locY();
-            prevz = mob.locZ();
-            currentHealth = mob.getHealth();
+          //  MikidController mob = new MikidController(loc);
+           // world.addEntity(mob);
+          //  id = mob.getUniqueID();
+           // prevx = mob.locX();
+           // prevy = mob.locY();
+          //  prevz = mob.locZ();
+          //  currentHealth = mob.getHealth();
             new BukkitRunnable() {
                 public void run() {
-                    mob.setSilent(true);
+                 //   mob.setSilent(true);
                     mob.setInvisible(true);
 
                 }
@@ -168,6 +164,6 @@ public class Mikid {
 
     public static List<EntityPlayer> getNpcs() {
         return Mikid;
-    }
+    }*/
 }
 

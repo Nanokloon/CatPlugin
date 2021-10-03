@@ -1,17 +1,15 @@
 package org.catplugin.eu.Mobs;
 
-import net.minecraft.server.v1_16_R3.*;
-import org.bukkit.ChatColor;
+import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.monster.EntitySkeletonWither;
+import net.minecraft.world.level.World;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
-import org.bukkit.entity.Player;
 
-public class WitherSkele extends EntitySkeletonWither {
+public class WitherSkele {//extends EntitySkeletonWither {
     public WitherSkele(Location loc) {
-        super(EntityTypes.WITHER_SKELETON, ((CraftWorld) loc.getWorld()).getHandle());
-        this.setCustomName(new ChatComponentText(ChatColor.DARK_RED + "" + ChatColor.BOLD + "Wither Skeleton BOSS"));
+//        super(EntityTypes.ba, ((CraftWorld) loc.getWorld()).getHandle());
+//        super(EntityTypes.ba, ((World) loc.getWorld()).);
+      /*  this.setCustomName(new ChatComponentText(ChatColor.DARK_RED + "" + ChatColor.BOLD + "Wither Skeleton BOSS"));
         this.setCustomNameVisible(true);
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
         this.setSprinting(true);
@@ -22,16 +20,16 @@ public class WitherSkele extends EntitySkeletonWither {
         org.bukkit.inventory.ItemStack chestplate = new org.bukkit.inventory.ItemStack(Material.NETHERITE_CHESTPLATE, 1);
         org.bukkit.inventory.ItemStack leggings = new org.bukkit.inventory.ItemStack(org.bukkit.Material.NETHERITE_LEGGINGS, 1);
         org.bukkit.inventory.ItemStack boots = new org.bukkit.inventory.ItemStack(Material.NETHERITE_BOOTS, 1);
-        this.setSlot(EnumItemSlot.MAINHAND, CraftItemStack.asNMSCopy(netheriteSword));
+        this.setSlot(EnumItemSlot., CraftItemStack.asNMSCopy(netheriteSword));
         this.setSlot(EnumItemSlot.HEAD, CraftItemStack.asNMSCopy(helm));
         this.setSlot(EnumItemSlot.CHEST, CraftItemStack.asNMSCopy(chestplate));
         this.setSlot(EnumItemSlot.LEGS, CraftItemStack.asNMSCopy(leggings));
         this.setSlot(EnumItemSlot.FEET, CraftItemStack.asNMSCopy(boots));
        /* for (Player player1 : Bukkit.getOnlinePlayers()) {
             this.setGoalTarget((EntityLiving) ((CraftPlayer) player1).getHandle());
-        }*/
-
-        this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityHuman>(this, EntityHuman.class, true));
+        }
+        this.
+        this.goalSelector.a(0, new PathfinderGoalNearestAttackableTarget<EntityHuman>(this, EntityHuman.class, true));*/
        // this.goalSelector.a(2, new PathfinderGoalRandomStrollLand(this, 1.0D));
         //this.goalSelector.a(3, new PathfinderGoalRandomLookaround(this));
        // this.setGoalTarget(((CraftPlayer) player).getHandle());

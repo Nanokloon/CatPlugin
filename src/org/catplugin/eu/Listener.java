@@ -1,17 +1,14 @@
 package org.catplugin.eu;
 
 
-import net.dv8tion.jda.api.entities.MessageChannel;
-import net.minecraft.server.v1_16_R3.WorldServer;
+import net.minecraft.server.level.WorldServer;
 import org.bukkit.*;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.block.*;
-import org.bukkit.block.data.BlockData;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.*;
-import org.bukkit.event.Event;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -20,35 +17,27 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.player.*;
-import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.metadata.MetadataValue;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.BoundingBox;
-import org.bukkit.util.RayTraceResult;
-import org.bukkit.util.Vector;
-import org.catplugin.eu.Mobs.NetheriteDefender;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static org.catplugin.eu.Main.*;
 
 
 public class Listener implements org.bukkit.event.Listener {
-    public boolean ranOnce = false;
     @EventHandler
     public void PlayerInteractEvent(PlayerInteractEvent event ) {
         Player p = event.getPlayer();
@@ -57,7 +46,8 @@ public class Listener implements org.bukkit.event.Listener {
             NamespacedKey itemKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "ballz");
             if (sword.hasItemMeta()) {
                 ItemMeta itemMeta = sword.getItemMeta();
-                    PersistentDataContainer container = itemMeta.getPersistentDataContainer();
+                assert itemMeta != null;
+                PersistentDataContainer container = itemMeta.getPersistentDataContainer();
                     if (container.has(itemKey, PersistentDataType.INTEGER)) {
                         if (container.get(itemKey, PersistentDataType.INTEGER) == 1) {
                             p.launchProjectile(Fireball.class);
@@ -84,7 +74,6 @@ public class Listener implements org.bukkit.event.Listener {
                 if (p.getInventory().getItemInMainHand().getType().equals(Material.NETHERITE_SWORD)) {
                     ItemStack sword = p.getInventory().getItemInMainHand();
                     NamespacedKey itemKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "onlychickens");
-                    NamespacedKey banKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "banhammer");
                     if (sword.hasItemMeta()) {
                         ItemMeta itemMeta = sword.getItemMeta();
                         if (itemMeta.getPersistentDataContainer() != null) {
@@ -92,9 +81,7 @@ public class Listener implements org.bukkit.event.Listener {
                             if (container.has(itemKey, PersistentDataType.INTEGER)) {
                                 int foundvalue = container.get(itemKey, PersistentDataType.INTEGER);
                                 if (foundvalue == 1) {
-                                    if (e.getEntity().getType().equals(EntityType.CHICKEN)) {
-
-                                    } else {
+                                    if (!(e.getEntity().getType().equals(EntityType.CHICKEN))) {
                                         //p.getPlayer().sendMessage("U RLY TRIED LOL");
                                         e.setCancelled(true);
                                     }
@@ -114,7 +101,7 @@ public class Listener implements org.bukkit.event.Listener {
             e.setCancelled(true);
             if (e.getCurrentItem() != null) {
                 if (e.getCurrentItem().hasItemMeta()) {
-                    String string =ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName());
+                    String string =ChatColor.stripColor(Objects.requireNonNull(e.getCurrentItem().getItemMeta()).getDisplayName());
                     switch(string) {
                         case "Next (Cannon)":
                         case "Back (Cannon)":
@@ -145,7 +132,6 @@ public class Listener implements org.bukkit.event.Listener {
         }
         if(e.getClickedInventory()!=null){
         if(e.getClickedInventory().getType().equals(InventoryType.SMITHING)) {
-            SmithingInventory smithingInventory = (SmithingInventory) e.getClickedInventory();
             NamespacedKey heartyKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("CatPlugin")), "hearty");
             
             if (e.getClickedInventory().getItem(0)!=null) {
@@ -232,8 +218,8 @@ public class Listener implements org.bukkit.event.Listener {
     }
 
 
-    @EventHandler
-    public void MessageRecivedEvent(AsyncPlayerChatEvent event) throws InterruptedException, IOException {
+   // @EventHandler
+    /*public void MessageRecivedEvent(AsyncPlayerChatEvent event) throws InterruptedException, IOException {
         String playerName = event.getPlayer().getName();
         String text = event.getMessage();
         MessageChannel channel = Main.jda.awaitReady().getGuildById("712092358711181325").getTextChannelById("812370653223190568");
@@ -248,7 +234,7 @@ public class Listener implements org.bukkit.event.Listener {
                 run = false;
             }
         }
-    }
+    }*/
 
 
     @EventHandler
@@ -269,11 +255,11 @@ public class Listener implements org.bukkit.event.Listener {
         Location l = e.getBlock().getLocation();
         //p.sendMessage(String.valueOf(randomNum));
         if(randomNum == 5 && e.getBlock().getType().equals(Material.ANCIENT_DEBRIS)){
-            NetheriteDefender netheriteDefender = new NetheriteDefender(l);
-            netheriteDefender.setHealth(60.0F);
+           // NetheriteDefender netheriteDefender = new NetheriteDefender(l);
+            //netheriteDefender.setHealth(60.0F);
 
             WorldServer worldServer = ((CraftWorld)p.getWorld()).getHandle();
-            worldServer.addEntity(netheriteDefender);
+            //worldServer.addEntity(netheriteDefender);
             p.playSound(l,Sound.ITEM_TRIDENT_THUNDER,SoundCategory.HOSTILE,10,10);
         }
        /* l.add(-5,4,5);
